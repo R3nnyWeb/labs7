@@ -4,10 +4,10 @@
 #pragma once
 namespace tree {
     typedef int data_type;
-    struct Node{
+    struct Tree{
         data_type data;
-        Node* left;
-        Node* right;
-    };
-
+        Tree* left;
+        Tree* right;
+        Tree(data_type _data): data(_data), left(nullptr), right(nullptr){}
+    }
 }
