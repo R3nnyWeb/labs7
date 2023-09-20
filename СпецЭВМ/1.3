@@ -1,0 +1,61 @@
+; PR_1
+	area stack, noinit, readwrite
+	space 0x400
+stack_top
+	area reset, data, readonly
+	area program,code,readonly
+	dcd stack_top
+	dcd start
+	entry
+start
+	bl pp1
+    bl pp2
+    bl pp3
+	b start
+pp1
+	movs r0, #0
+	moveq r1, #32	
+	movne r1, #150
+	movs r2, #-1
+	movs r3, #255
+	movw r5, #0xcdef
+	movt r5, #0x89ab
+	ldr r6, = 0xfedcba98
+	mov r4, r0
+	adds r4, r1
+	add r4, r2
+	movs r7, r4, lsr # 2
+	add r8, r4, #25
+	add r9, r7, r4
+	add r10, r4, r7, lsr # 2
+	push {r4}
+	push {r5-r7}
+	pop {r1, r0}
+	pop {r3, r2}
+	mov r0, #0x20000000
+	str r5, [r0],#4
+	str r6, [r0],#4
+	str r7, [r0],#4
+	ldr r8, [r0,#-4]!
+	ldr r9, [r0,#-4]!
+	ldr r10, [r0,#-4]!
+	bx lr
+pp2
+	mov r5, #0x20000000
+	mov r5, #0x23A
+	mov r6, #0x64
+	mov r7, #0x12C
+	mov r8, #0x1C2
+	ldr r6, [r0,#-4]!
+	ldr r7, [r0,#-4]!
+	ldr r18, [r0,#-4]!
+	bx lrldr r0, = 0x12345678
+	rbit r1, r0
+	rev r2, r0
+	rev16 r3, r0
+	revsh r4, r0
+	bx lr
+pp3
+	bx lr
+	
+end
