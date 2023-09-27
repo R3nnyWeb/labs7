@@ -9,10 +9,10 @@ stack_top
 	entry
 start
 	;bl pp1
-	 ;bl pp2
-	 ;bl pp3
-	 ;bl pp4
-	 bl pp5
+	;bl pp2
+	;bl pp3
+	;bl pp4
+	bl pp5
 	b start
 pp1
 	movs r0, #0
@@ -70,7 +70,6 @@ pp4
 	rrx r1, r0
 	rrxs r2, r1
 	rrxs r3, r2
-	;lsr 
 	bx lr
 pp5
 	mov r0, #9
@@ -81,3 +80,11 @@ pp5
 	lsrs r4, r0, #2
 	bx lr
 endd
+
+
+
+
+
+
+
+
