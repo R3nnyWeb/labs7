@@ -1,0 +1,3 @@
+C:/Users/R3nny/Desktop/labs7/spec_evm/lab1/cmake-build-debug/CMakeFiles/lab1.dir
+C:/Users/R3nny/Desktop/labs7/spec_evm/lab1/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/R3nny/Desktop/labs7/spec_evm/lab1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
