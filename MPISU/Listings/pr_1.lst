@@ -82,17 +82,16 @@ ARM Macro Assembler    Page 2
    70 000000A6 EA4F 0130       rrx              r1, r0
    71 000000AA EA5F 0231       rrxs             r2, r1
    72 000000AE EA5F 0332       rrxs             r3, r2
-   73 000000B2         ;lsr 
-   74 000000B2 4770            bx               lr
-   75 000000B4         pp5
-   76 000000B4 F04F 0009       mov              r0, #9
-   77 000000B8 F04F 0A01       mov              r10, #1
-   78 000000BC FA20 F10A       lsr              r1, r0, r10
-   79 000000C0 EA4F 0290       lsr              r2, r0, #2
-   80 000000C4 FA30 F30A       lsrs             r3, r0, r10
-   81 000000C8 0884            lsrs             r4, r0, #2
-   82 000000CA 4770            bx               lr
-   83 000000CC         endd
+   73 000000B2 4770            bx               lr
+   74 000000B4         pp5
+   75 000000B4 F04F 0009       mov              r0, #9
+   76 000000B8 F04F 0A01       mov              r10, #1
+   77 000000BC FA20 F10A       lsr              r1, r0, r10
+   78 000000C0 EA4F 0290       lsr              r2, r0, #2
+   79 000000C4 FA30 F30A       lsrs             r3, r0, r10
+   80 000000C8 0884            lsrs             r4, r0, #2
+   81 000000CA 4770            bx               lr
+   82 000000CC         endd
                        
               FEDCBA98 
               12345678 
@@ -151,7 +150,7 @@ endd 000000CC
 
 Symbol: endd
    Definitions
-      At line 83 in file PR_1.s
+      At line 82 in file PR_1.s
    Uses
       None
 Comment: endd unused
@@ -191,7 +190,7 @@ pp5 000000B4
 
 Symbol: pp5
    Definitions
-      At line 75 in file PR_1.s
+      At line 74 in file PR_1.s
    Uses
       At line 15 in file PR_1.s
 Comment: pp5 used once
