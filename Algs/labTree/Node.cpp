@@ -26,4 +26,8 @@ namespace tree {
         } else throw "Repeat keys";
         return tree;
     }
+
+    void printTree(Node& tree) {
+
+    }
 }
