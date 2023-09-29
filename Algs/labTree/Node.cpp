@@ -53,11 +53,25 @@ namespace tree {
         else FIND(key, RIGHT(tree));
     }
 
-    void printTree(Node *tree, int level) {
+    void TLR(Node *tree, int level) {
         if (tree == nullptr) return;
         for (int i = 0; i < level; i++) cout << "=";
         cout << "> " << tree->data << endl;
-        printTree(tree->left, level + 1);
-        printTree(tree->right, level + 1);
+        TLR(tree->left, level + 1);
+        TLR(tree->right, level + 1);
+    }
+    void LTR(Node* tree, int level) {
+        if (tree == nullptr) return;
+        LTR(tree->left, level + 1);
+        for (int i = 0; i < level; i++) cout << "=";
+        cout << "> " << tree->data << endl;
+        LTR(tree->right, level + 1);
+    }
+    void LRT(Node* tree, int level) {
+        if (tree == nullptr) return;
+        LRT(tree->left, level + 1);
+        LRT(tree->right, level + 1);
+        for (int i = 0; i < level; i++) cout << "=";
+        cout << "> " << tree->data << endl;
     }
 }
