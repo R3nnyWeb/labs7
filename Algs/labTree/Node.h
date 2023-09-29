@@ -14,5 +14,5 @@ namespace tree {
     Node* RIGHT(Node*);
     Node* MAKE_TREE();
     Node* INSERT(Node* tree, data_type data);
-    void printTree(Node& tree);
+    void printTree(Node* tree, int level);
 }
