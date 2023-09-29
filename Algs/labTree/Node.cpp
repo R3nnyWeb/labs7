@@ -3,22 +3,24 @@
 //
 #include "Node.h"
 #include <iostream>
+
 using namespace std;
 namespace tree {
-    void INSERT(const data_type *data, Node &root, int i);
 
-    Node* MAKE_TREE() {
-        data_type data[] = {2, 5, 6, 1, -1, 7, 3};
+
+    Node *MAKE_TREE() {
+        data_type data[] = {2, 5, 6, 1, -1, 7, 9};
+
         int n = 7;
-        Node root = Node(data[0]);
+        Node *root = new Node(data[0]);
 
         for (int i = 1; i < n; i++) {
-            INSERT(&root, data[i]);
+            INSERT(root, data[i]);
         }
-        return &root;
+        return root;
     }
 
-    Node* INSERT(Node *tree, data_type data) {
+    Node *INSERT(Node *tree, data_type data) {
         if (tree == nullptr) {
             return new Node(data);
         } else if (data < tree->data) {
@@ -29,10 +31,32 @@ namespace tree {
         return tree;
     }
 
-    void printTree(Node* tree, int level) {
+
+    Node *LEFT(Node *node) {
+        return node->left;
+    }
+
+    Node *RIGHT(Node *node) {
+        return node->right;
+    }
+
+    data_type INFO(Node *node) {
+        return node->data;
+    }
+
+    Node *FIND(data_type key, Node *tree) {
+        if (tree == nullptr) return nullptr;
+        else if (INFO(tree) == key)
+            return tree;
+        else if (key < INFO(tree))
+            FIND(key, LEFT(tree));
+        else FIND(key, RIGHT(tree));
+    }
+
+    void printTree(Node *tree, int level) {
         if (tree == nullptr) return;
-        for (int i = 0;i < level;i++) cout << "=";
-        cout << "> " << tree->data << endl; 
+        for (int i = 0; i < level; i++) cout << "=";
+        cout << "> " << tree->data << endl;
         printTree(tree->left, level + 1);
         printTree(tree->right, level + 1);
     }
