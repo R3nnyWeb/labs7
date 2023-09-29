@@ -2,13 +2,17 @@
 // Created by R3nny on 15.09.2023.
 //
 #include "Node.h"
+#include <iostream>
 
+using namespace std;
 namespace tree {
+
 
     Node *MAKE_TREE() {
         data_type data[] = {2, 5, 6, 1, -1, 7, 9};
+
         int n = 7;
-        Node* root = new Node(data[0]);
+        Node *root = new Node(data[0]);
 
         for (int i = 1; i < n; i++) {
             INSERT(root, data[i]);
@@ -26,6 +30,7 @@ namespace tree {
         } else throw "Repeat keys";
         return tree;
     }
+
 
     Node *LEFT(Node *node) {
         return node->left;
@@ -46,5 +51,13 @@ namespace tree {
         else if (key < INFO(tree))
             FIND(key, LEFT(tree));
         else FIND(key, RIGHT(tree));
+    }
+
+    void printTree(Node *tree, int level) {
+        if (tree == nullptr) return;
+        for (int i = 0; i < level; i++) cout << "=";
+        cout << "> " << tree->data << endl;
+        printTree(tree->left, level + 1);
+        printTree(tree->right, level + 1);
     }
 }

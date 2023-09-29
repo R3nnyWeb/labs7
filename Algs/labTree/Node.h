@@ -16,4 +16,5 @@ namespace tree {
     Node* FIND(data_type data, Node* tree);
     Node* MAKE_TREE();
     Node* INSERT(Node* tree, data_type data);
+    void printTree(Node* tree, int level);
 }
