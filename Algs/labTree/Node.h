@@ -10,8 +10,10 @@ namespace tree {
         Node* right;
         Node(data_type _data): data(_data), left(nullptr), right(nullptr){};
     };
-    Node* LEFT(Node*);
-    Node* RIGHT(Node*);
+    Node* LEFT(Node* node);
+    Node* RIGHT(Node* node);
+    data_type INFO(Node* node);
+    Node* FIND(data_type data, Node* tree);
     Node* MAKE_TREE();
     Node* INSERT(Node* tree, data_type data);
 }
