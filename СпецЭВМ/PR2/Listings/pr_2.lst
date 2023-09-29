@@ -1,0 +1,166 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ; PR_2
+    2 00000000                 area             stack, noinit, readwrite
+    3 00000000                 space            0x400
+    4 00000400         stack_top
+    5 00000400                 area             reset, data, readonly
+    6 00000000 00000000        dcd              stack_top
+    7 00000004 00000000        dcd              start
+    8 00000008                 area             program,code,readonly
+    9 00000000                 entry
+   10 00000000         start
+   11 00000000 F000 F801       bl               pp1
+   12 00000004         ;bl pp2
+   13 00000004         ; bl pp3
+   14 00000004 E7FC            b                start
+   15 00000006         pp1
+   16 00000006 4822            ldr              r0, =0x12345678
+   17 00000008 F64F 71FF       movw             r1, #0xffff
+   18 0000000C EA4F 4231       mov              r2, r1, ror #16
+   19 00000010 F04F 0305       mov              r3, #0x05
+   20 00000014 F013 0F01       tsts             r3, #1
+   21 00000018 BF14 EA00 
+              0401             andne            r4, r0, r1
+   22 0000001E EA00 0402       andeq            r4, r0, r2
+   23 00000022 F013 0F02       tsts             r3, #2
+   24 00000026 BF14 EA40 
+              0501             orrne            r5, r0, r1
+   25 0000002C EA40 0502       orreq            r5, r0, r2
+   26 00000030 F013 0F04       tsts             r3, #4
+   27 00000034 BF14 EA80 
+              0601             eorne            r6, r0, r1
+   28 0000003A EA80 0602       eoreq            r6, r0, r2
+   29 0000003E F000 07FF       and              r7, r0,#0xff
+   30 00000042 F400 487F       and              r8, r0,#0xff00
+   31 00000046 EA4F 2818       lsr              r8, r8, #8
+   32 0000004A F400 097F       and              r9, r0, #0xff0000
+   33 0000004E EA4F 4919       lsr              r9 ,r9, #16
+   34 00000052 F000 4A7F       and              r10, r0, #0xff000000
+   35 00000056 EA4F 6A1A       lsr              r10,r10, #24
+   36 0000005A 4770            bx               lr
+   37 0000005C         pp2
+   38 0000005C F04F 5000       mov              r0, #0x20000000
+   39 00000060 F04F 5108       mov              r1, #0x22000000
+   40 00000064 F04F 0200       mov              r2, #0
+   41 00000068 F04F 0301       mov              r3, #1
+   42 0000006C 6002            str              r2, [r0]
+   43 0000006E 600B            str              r3, [r1]
+   44 00000070 604B            str              r3, [r1,#0x04]
+   45 00000072 608B            str              r3, [r1,#0x08]
+   46 00000074 60CB            str              r3, [r1,#0x0c]
+   47 00000076 688D            ldr              r5, [r1,#0x08]
+   48 00000078 6806            ldr              r6, [r0]
+   49 0000007A F04F 070A       mov              r7, #0x0a
+   50 0000007E F8C0 7003       str              r7, [r0,#0x03]
+   51 00000082 664A            str              r2, [r1,#0x64]
+   52 00000084 66CA            str              r2, [r1,#0x6c]
+   53 00000086 F8D0 8003       ldr              r8, [r0,#0x03]
+   54 0000008A 4770            bx               lr
+   55 0000008C         pp3
+   56 0000008C 4770            bx               lr
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   57 0000008E                 end
+              00 00 12345678 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\objects\pr_2.d -o.\objects\pr_2.o -I.\RTE\_Target_1 -IC:\Keil_v5
+\ARM\PACK\Keil\MDR1986BExx\1.4\Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\inc 
+-IC:\Keil_v5\ARM\CMSIS\Include --predefine="__EVAL SETA 1" --predefine="__UVISI
+ON_VERSION SETA 526" --predefine="USE_MDR32F9Q2_Rev1 SETA 1" --list=.\listings\
+pr_2.lst PR_2.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+stack 00000000
+
+Symbol: stack
+   Definitions
+      At line 2 in file PR_2.s
+   Uses
+      None
+Comment: stack unused
+stack_top 00000400
+
+Symbol: stack_top
+   Definitions
+      At line 4 in file PR_2.s
+   Uses
+      At line 6 in file PR_2.s
+Comment: stack_top used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+reset 00000000
+
+Symbol: reset
+   Definitions
+      At line 5 in file PR_2.s
+   Uses
+      None
+Comment: reset unused
+1 symbol
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+pp1 00000006
+
+Symbol: pp1
+   Definitions
+      At line 15 in file PR_2.s
+   Uses
+      At line 11 in file PR_2.s
+Comment: pp1 used once
+pp2 0000005C
+
+Symbol: pp2
+   Definitions
+      At line 37 in file PR_2.s
+   Uses
+      None
+Comment: pp2 unused
+pp3 0000008C
+
+Symbol: pp3
+   Definitions
+      At line 55 in file PR_2.s
+   Uses
+      None
+Comment: pp3 unused
+program 00000000
+
+Symbol: program
+   Definitions
+      At line 8 in file PR_2.s
+   Uses
+      None
+Comment: program unused
+start 00000000
+
+Symbol: start
+   Definitions
+      At line 10 in file PR_2.s
+   Uses
+      At line 7 in file PR_2.s
+      At line 14 in file PR_2.s
+
+5 symbols
+343 symbols in table
