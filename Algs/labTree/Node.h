@@ -12,7 +12,6 @@ namespace tree {
     };
     Node* LEFT(Node*);
     Node* RIGHT(Node*);
-    void ADD_LEFT(Node*, data_type data);
-    void ADD_RIGHT(Node* , data_type data);
     Node* MAKE_TREE();
+    Node* INSERT(Node* tree, data_type data);
 }
