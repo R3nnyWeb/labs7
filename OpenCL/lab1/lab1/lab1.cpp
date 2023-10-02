@@ -9,8 +9,10 @@
 #include <string>
 #include <fstream>
 
-using namespace std;
 
+using namespace std;
+void HelloWOrld(const char* filename, const cl_context& context, cl_device_id* devices, const cl_command_queue& commandQueue);
+void Mul(const char* filename, const cl_context& context, cl_device_id* devices, const cl_command_queue& commandQueue);
 int convertToString(const char* filename, std::string& s)
 {
 	size_t size;
@@ -52,6 +54,7 @@ void Init() {
         cout << output << endl;
     }
 	cout << "NumPlatforms: " << numPlatforms << endl;
+
     if (numPlatforms > 0)
     {
         cl_platform_id* platforms = (cl_platform_id*)malloc(numPlatforms * sizeof(cl_platform_id));
@@ -63,54 +66,35 @@ void Init() {
     cl_device_id* devices;
     status = clGetDeviceIDs(platform, CL_DEVICE_TYPE_GPU, 0, NULL, &numDevices);
 	cout << "NumDevices: " << numDevices << endl;
+
     devices = (cl_device_id*)malloc(numDevices * sizeof(cl_device_id));
-    status = clGetDeviceIDs(platform, CL_DEVICE_TYPE_GPU, numDevices, devices, NULL);
-	char openclVersion[1024];
+   status = clGetDeviceIDs(platform, CL_DEVICE_TYPE_GPU, numDevices, devices, NULL);
+	/*char openclVersion[1024];
 	status = clGetDeviceInfo(devices[0], CL_DEVICE_OPENCL_C_VERSION,
 		sizeof(openclVersion), openclVersion, 0);
-	
+	cout << openclVersion << endl;*/
+
+	char deviceName[1024];
+	status = clGetDeviceInfo(devices[0], CL_DEVICE_TYPE,
+		sizeof(deviceName), deviceName, 0);
+	cout << deviceName << endl;
+
 	cl_context context = clCreateContext(NULL, 1, devices, NULL, NULL, NULL);
 	cl_command_queue commandQueue = clCreateCommandQueue(context, devices[0], 0, NULL);
 	
+
+
+
+
 	const char* filename = "HelloWorld_Kernel.cl";
-	string sourceStr;
-	status = convertToString(filename, sourceStr);
-	const char* source = sourceStr.c_str();
-	size_t sourceSize[] = { strlen(source) };
-	cl_program program = clCreateProgramWithSource(context, 1, &source, sourceSize, NULL);
-	status = clBuildProgram(program, 1, devices, NULL, NULL, NULL);
-	
-	const char* input = "GdkknVnqkc";
-	size_t strlength = strlen(input);
-	char* output = (char*)malloc(strlength + 1);
+	HelloWOrld(filename, context, devices, commandQueue);
+	const char* filename1 = "Mul.cl";
+	Mul(filename1, context, devices, commandQueue);
 
-	cl_mem inputBuffer = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, (strlength + 1) * sizeof(char), (void*)input, NULL);
-	cl_mem outputBuffer = clCreateBuffer(context, CL_MEM_WRITE_ONLY, (strlength + 1) * sizeof(char), NULL, NULL);
-	
-	cl_kernel kernel = clCreateKernel(program, "helloworld", NULL);
-	
-	status = clSetKernelArg(kernel, 0, sizeof(cl_mem), (void*)&inputBuffer);
-	status = clSetKernelArg(kernel, 1, sizeof(cl_mem), (void*)&outputBuffer);
-
-	size_t global_work_size[1] = { strlength };
-	status = clEnqueueNDRangeKernel(commandQueue, kernel, 1, NULL, global_work_size, NULL, 0, NULL, NULL);
-
-	status = clEnqueueReadBuffer(commandQueue, outputBuffer, CL_TRUE, 0, strlength * sizeof(char), output, 0, NULL, NULL);
-
-	output[strlength] = '\0';
-	cout << output << endl;
-	status = clReleaseKernel(kernel);
-	status = clReleaseProgram(program);
-	status = clReleaseMemObject(inputBuffer);
-	status = clReleaseMemObject(outputBuffer);
 	status = clReleaseCommandQueue(commandQueue);
 	status = clReleaseContext(context);
 
-	if (output != NULL)
-	{
-		free(output);
-		output = NULL;
-	}
+
 
 	if (devices != NULL)
 	{
@@ -118,6 +102,106 @@ void Init() {
 		devices = NULL;
 	}
 
+}
+
+void HelloWOrld( const char* filename, const cl_context& context, cl_device_id* devices, const cl_command_queue& commandQueue)
+{
+	cl_int status;
+	string sourceStr;
+	status = convertToString(filename, sourceStr);
+	const char* source = sourceStr.c_str();
+	size_t sourceSize[] = { strlen(source) };
+	cl_program program = clCreateProgramWithSource(context, 1, &source, sourceSize, NULL);
+	status = clBuildProgram(program, 1, devices, NULL, NULL, NULL);
+
+	const char* input = "GdkknVnqkc";
+	size_t strlength = strlen(input);
+	char* output = (char*)malloc(strlength + 1);
+	const int k = 10;
+	cl_mem inputBuffer = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, (strlength + 1) * sizeof(char), (void*)input, NULL);
+	cl_mem inputBuffer2 = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, sizeof(int), (void*)&k, NULL);
+	cl_mem outputBuffer = clCreateBuffer(context, CL_MEM_WRITE_ONLY, (strlength + 1) * sizeof(char), NULL, NULL);
+
+	cl_kernel kernel = clCreateKernel(program, "helloworld", NULL);
+
+	status = clSetKernelArg(kernel, 0, sizeof(cl_mem), (void*)&inputBuffer);
+	status = clSetKernelArg(kernel, 1, sizeof(cl_mem), (void*)&inputBuffer2);
+	status = clSetKernelArg(kernel, 2, sizeof(cl_mem), (void*)&outputBuffer);
+
+	size_t global_work_size[1] = { strlength };
+
+	status = clEnqueueNDRangeKernel(commandQueue, kernel, 1, NULL, global_work_size, NULL, 0, NULL, NULL);
+
+	status = clEnqueueReadBuffer(commandQueue, outputBuffer, CL_TRUE, 0, strlength * sizeof(char), output, 0, NULL, NULL);
+
+	output[strlength] = '\0';
+	cout << output << endl;
+
+
+	status = clReleaseKernel(kernel);
+	status = clReleaseProgram(program);
+	status = clReleaseMemObject(inputBuffer);
+	status = clReleaseMemObject(outputBuffer);
+
+	if (output != NULL)
+	{
+		free(output);
+		output = NULL;
+	}
+}
+
+void Mul(const char* filename, const cl_context& context, cl_device_id* devices, const cl_command_queue& commandQueue)
+{
+	cl_int status;
+	string sourceStr;
+	status = convertToString(filename, sourceStr);
+	const char* source = sourceStr.c_str();
+	size_t sourceSize[] = { strlen(source) };
+	cl_program program = clCreateProgramWithSource(context, 1, &source, sourceSize, NULL);
+	status = clBuildProgram(program, 1, devices, NULL, NULL, NULL);
+
+	const size_t size = 10;
+
+	const float input1[size] = {2.0f,2.0f,3.0f,4.0f,5.0f,6.0f,7.0f,8.0f,9.0f,10.0f};
+	const float input2[size] = {41.0f,2.0f,3.0f,4.0f,5.0f,6.0f,7.0f,8.0f,9.0f,10.0f };
+
+
+
+	float* output = (float*)malloc(size);
+
+
+
+	cl_mem inputBuffer = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, (size) * sizeof(float), (void*)input1, NULL);
+
+	cl_mem inputBuffer2 = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, (size ) * sizeof(float), (void*)input2, NULL);
+
+	cl_mem outputBuffer = clCreateBuffer(context, CL_MEM_WRITE_ONLY, (size ) * sizeof(float), NULL, NULL);
+
+	cl_kernel kernel = clCreateKernel(program, "mul", NULL);
+
+	status = clSetKernelArg(kernel, 0, sizeof(cl_mem), (void*)&inputBuffer);
+	status = clSetKernelArg(kernel, 1, sizeof(cl_mem), (void*)&inputBuffer2);
+	status = clSetKernelArg(kernel, 2, sizeof(cl_mem), (void*)&outputBuffer);
+
+	size_t global_work_size[1] = { size };
+
+	status = clEnqueueNDRangeKernel(commandQueue, kernel, 1, NULL, global_work_size, NULL, 0, NULL, NULL);
+
+	status = clEnqueueReadBuffer(commandQueue, outputBuffer, CL_TRUE, 0, size * sizeof(float), output, 0, NULL, NULL);
+
+	for (size_t i = 0; i < size; i++)
+	{
+		cout << output[i] << endl;
+	}
+	
+
+
+	status = clReleaseKernel(kernel);
+	status = clReleaseProgram(program);
+	status = clReleaseMemObject(inputBuffer);
+	status = clReleaseMemObject(outputBuffer);
+
+	
 }
 
 int main()

@@ -1,5 +1,5 @@
-__kernel void helloworld( global char* in, global char* out)
+__kernel void helloworld( global char* in,global int* k, global char* out)
 {
-intnum = get_global_id(0); 
-out[num] = in[num] + 1;
+int num = get_global_id(0); 
+out[num] = in[num] + *k;
 }
