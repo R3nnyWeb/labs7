@@ -12,21 +12,21 @@ namespace tree {
         data_type data[] = {2, 5, 6, 1, -1, 7, 9};
 
         int n = 7;
-        Node *root = new Node(data[0]);
+        Node *root = new Node(data[0], 0);
 
         for (int i = 1; i < n; i++) {
-            INSERT(root, data[i]);
+            INSERT(root, data[i], i);
         }
         return root;
     }
 
-    Node *INSERT(Node *tree, data_type data) {
+    Node *INSERT(Node *tree, data_type data, int index) {
         if (tree == nullptr) {
-            return new Node(data);
+            return new Node(data, index);
         } else if (data < tree->data) {
-            tree->left = INSERT(tree->left, data);
+            tree->left = INSERT(tree->left, data, index);
         } else if (data > tree->data) {
-            tree->right = INSERT(tree->right, data);
+            tree->right = INSERT(tree->right, data, index);
         } else throw "Repeat keys";
         return tree;
     }
@@ -44,10 +44,10 @@ namespace tree {
         return node->data;
     }
 
-    Node *FIND(data_type key, Node *tree) {
-        if (tree == nullptr) return nullptr;
+    data_type FIND(data_type key, Node *tree) {
+        if (tree == nullptr) return -1;
         else if (INFO(tree) == key)
-            return tree;
+            return tree->index;
         else if (key < INFO(tree))
             FIND(key, LEFT(tree));
         else FIND(key, RIGHT(tree));
