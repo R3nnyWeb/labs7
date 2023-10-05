@@ -45,9 +45,9 @@ int main (void)//
 	ButtonsPinCfg();
 	int isPressedSelect = 0;
 	int isPressedRight = 0;
-	int T = 100000;//ПЕриод
-	int w = 10000; //Длина импульса
-	int step = 3000; //Шаг изменения;
+	int T = 10000;//ПЕриод
+	int w = 1000; //Длина импульса
+	int step = 300; //Шаг изменения;
 	int counter = 0;
 	while(1){
 		//MDR_PORTA->RXTX |= 0x01;
@@ -55,9 +55,9 @@ int main (void)//
 		//MDR_PORTA->RXTX &=~0x01;
 		//Delay(T-w);
 		if(counter < w){
-			MDR_PORTA->RXTX |= 0x01;
+			MDR_PORTC->RXTX |= 0x01;
 		} else {
-			MDR_PORTA->RXTX &=~0x01;
+			MDR_PORTC->RXTX &=~0x01;
 		}
 		if(counter == T) counter = 0;
 		
