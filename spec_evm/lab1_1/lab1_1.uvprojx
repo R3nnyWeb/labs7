@@ -383,9 +383,9 @@
           <GroupName>MainGroup</GroupName>
           <Files>
             <File>
-              <FileName>2_5.c</FileName>
+              <FileName>2_3.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\2_5.c</FilePath>
+              <FilePath>.\2_3.c</FilePath>
             </File>
           </Files>
         </Group>

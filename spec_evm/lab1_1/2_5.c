@@ -10,11 +10,11 @@ void Delay(int del){
 
 void LedPinConfig(void){
 	PortInit.PORT_Pin = PORT_Pin_0;
-	PortInit.PORT_OE = PORT_OE_IN;
+	PortInit.PORT_OE = PORT_OE_OUT;
 	PortInit.PORT_FUNC = PORT_FUNC_PORT;
 	PortInit.PORT_MODE = PORT_MODE_DIGITAL;
 	PortInit.PORT_SPEED = PORT_SPEED_SLOW;
-	PORT_Init(MDR_PORTA, &PortInit);
+	PORT_Init(MDR_PORTB, &PortInit);
 }
 
 
@@ -38,14 +38,14 @@ int main (void)//
 {
 	RST_CLK_PCLKcmd(RST_CLK_PCLK_PORTC, ENABLE);//включить тактирование
 	RST_CLK_PCLKcmd(RST_CLK_PCLK_PORTB, ENABLE);
-	RST_CLK_PCLKcmd(RST_CLK_PCLK_PORTA, ENABLE);
+
 	LedPinConfig();
 	ButtonsPinCfg();
 	int isPressedSelect = 0;
 	int isPressedRight = 0;
-	int T = 1000;//ПЕриод
-	int w = 100; //Длина импульса	int
-	int step = 12; //Шаг изменения;
+	int T = 5;//ПЕриод
+	int w = 1; //Длина импульса	int
+	int step = 1; //Шаг изменения;
 	int counter = 0;
 	while(1){
 		//MDR_PORTA->RXTX |= 0x01;
@@ -53,9 +53,9 @@ int main (void)//
 		//MDR_PORTA->RXTX &=~0x01;
 		//Delay(T-w);
 		if(counter < w){
-			MDR_PORTA->RXTX |= 0x01;
+			MDR_PORTB->RXTX |= 0x01;
 		} else {
-			MDR_PORTA->RXTX &=~0x01;
+			MDR_PORTB->RXTX &=~0x01;
 		}
 		if(counter == T) counter = 0;
 		
