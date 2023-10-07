@@ -13,7 +13,10 @@ start
 	 ;bl pp3
 	; bl pp4
 	 ;bl pp5
-	 bl pp6
+	 ;bl pp6
+	  ;bl pp7
+
+	bl pp8
 	b start
 pp1
 	ldr r0, =0x12345678
@@ -107,5 +110,20 @@ pp5
 pp6 
 	mov r0, #1
 	rrxs r0,r0
-	rrxs r0,r0
+pp7
+	mov r0, #100
+	asr r0, #1 ;Деление на 2
+	mov r0, r0, asl #2 ;Умножение на 4
+	asr r0, #3 ;Деление на 8
+pp8
+	mov r0, #100
+	mov r1, #-1
+	tsts r0, #1 ;0
+	tsts r0, #4	;1
+	cmps r0, r0 
+	ands r5,r0, #1 ;0
+	ands r5,r0, #4 ;1
+	cmps r1, 0 ;На отрицательность
+	ors r1,r1 ;На отрицательность
+	tsts r0, #1
 	end
