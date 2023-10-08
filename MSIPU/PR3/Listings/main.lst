@@ -1,0 +1,160 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ; PR_3
+    2 00000000                 area             stack, noinit, readwrite
+    3 00000000                 space            0x400
+    4 00000400         stack_top
+    5 00000400                 area             reset, data, readonly
+    6 00000000 00000000        dcd              stack_top
+    7 00000004 00000000        dcd              start
+    8 00000008                 area             program,code,readonly
+    9 00000000                 entry
+   10 00000000         start
+   11 00000000         ;bl pp1
+   12 00000000         ;bl pp2
+   13 00000000 F000 F828       bl               pp3
+   14 00000004 E7FC            b                start
+   15 00000006         pp1
+   16 00000006 F04F 5000       mov              r0, #0x20000000
+   17 0000000A F04F 0101       mov              r1, #1
+   18 0000000E F04F 32FF       mov              r2, #-1
+   19 00000012 F04F 037F       mov              r3, #127
+   20 00000016 F06F 047F       mov              r4, #-128
+   21 0000001A 7000            strb             r0, [r0]
+   22 0000001C 7041            strb             r1, [r0,#1]
+   23 0000001E 7082            strb             r2, [r0,#2]
+   24 00000020 70C3            strb             r3, [r0,#3]
+   25 00000022 7104            strb             r4, [r0,#4]
+   26 00000024 F990 5002       ldrsb            r5, [r0,#2]
+   27 00000028 7886            ldrb             r6, [r0,#2]
+   28 0000002A 4770            bx               lr
+   29 0000002C         pp2
+   30 0000002C F06F 0801       ldr              r8, = -2
+   31 00000030 F04F 0903       ldr              r9, = 3
+   32 00000034 F06F 0A03       ldr              r10, =-4
+   33 00000038 F04F 0B05       ldr              r11, =5
+   34 0000003C FB88 0109       smull            r0, r1, r8, r9
+   35 00000040 FB8A 230B       smull            r2, r3, r10, r11
+   36 00000044 1884            adds             r4, r0, r2
+   37 00000046 EB51 0503       adcs             r5, r1, r3
+   38 0000004A EA4F 0535       rrx              r5, r5
+   39 0000004E EA4F 0434       rrx              r4, r4
+   40 00000052 4770            bx               lr
+   41 00000054         pp3
+   42 00000054 F04F 5000       mov              r0, #0x20000000
+   43 00000058 F04F 0132       mov              r1, #50
+   44 0000005C F06F 0263       mov              r2, #-100
+   45 00000060 F06F 03F9       mov              r3, #-250
+   46 00000064 F04F 0464       mov              r4, #100
+   47 00000068 EB01 0502       add              r5, r1, r2
+   48 0000006C 441D            add              r5, r3
+   49 0000006E 4425            add              r5, r4
+   50 00000070 EA4F 06A5       asr              r6, r5, #2
+   51 00000074 7006            strb             r6, [r0]
+   52 00000076 F990 7000       ldrsb            r7, [r0]
+   53 0000007A F890 8000       ldrb             r8, [r0]
+   54 0000007E 4770            bx               lr
+   55 00000080                 end
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\objects\main.d -o.\objects\main.o -I.\RTE\_Target_1 -IC:\Keil_v5
+\ARM\PACK\Keil\MDR1986BExx\1.4\Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\inc 
+-IC:\Keil_v5\ARM\CMSIS\Include --predefine="__EVAL SETA 1" --predefine="__UVISI
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+ON_VERSION SETA 526" --predefine="USE_MDR32F9Q2_Rev1 SETA 1" --list=.\listings\
+main.lst main.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+stack 00000000
+
+Symbol: stack
+   Definitions
+      At line 2 in file main.s
+   Uses
+      None
+Comment: stack unused
+stack_top 00000400
+
+Symbol: stack_top
+   Definitions
+      At line 4 in file main.s
+   Uses
+      At line 6 in file main.s
+Comment: stack_top used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+reset 00000000
+
+Symbol: reset
+   Definitions
+      At line 5 in file main.s
+   Uses
+      None
+Comment: reset unused
+1 symbol
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+pp1 00000006
+
+Symbol: pp1
+   Definitions
+      At line 15 in file main.s
+   Uses
+      None
+Comment: pp1 unused
+pp2 0000002C
+
+Symbol: pp2
+   Definitions
+      At line 29 in file main.s
+   Uses
+      None
+Comment: pp2 unused
+pp3 00000054
+
+Symbol: pp3
+   Definitions
+      At line 41 in file main.s
+   Uses
+      At line 13 in file main.s
+Comment: pp3 used once
+program 00000000
+
+Symbol: program
+   Definitions
+      At line 8 in file main.s
+   Uses
+      None
+Comment: program unused
+start 00000000
+
+Symbol: start
+   Definitions
+      At line 10 in file main.s
+   Uses
+      At line 7 in file main.s
+      At line 14 in file main.s
+
+5 symbols
+341 symbols in table
