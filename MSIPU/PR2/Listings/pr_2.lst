@@ -25,7 +25,7 @@ ARM Macro Assembler    Page 1
    19 00000000 F000 F8A6       bl               pp8
    20 00000004 E7FC            b                start
    21 00000006         pp1
-   22 00000006 485A            ldr              r0, =0x12345678
+   22 00000006 485B            ldr              r0, =0x12345678
    23 00000008 F64F 71FF       movw             r1, #0xffff
    24 0000000C EA4F 4231       mov              r2, r1, ror #16
    25 00000010 F04F 0305       mov              r3, #0x05
@@ -149,9 +149,11 @@ ARM Macro Assembler    Page 3
   125 00000166 F010 0504       ands             r5,r0, #4   ;1
   126 0000016A 2900            cmps             r1, 0       ;На отрица�
                                                             �ельность
-  127 0000016C F010 0F01       tsts             r0, #1
-  128 00000170                 end
-              12345678 
+  127 0000016C 4309            orrs             r1,r1       ;На отрица�
+                                                            �ельность
+  128 0000016E F010 0F01       tsts             r0, #1
+  129 00000172                 end
+              00 00 12345678 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=.\objects\pr_2.d -o.\objects\pr_2.o -I.\RTE\_Target_1 -IC:\Keil_v5
 \ARM\PACK\Keil\MDR1986BExx\1.4\Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\inc 
