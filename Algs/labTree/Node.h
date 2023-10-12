@@ -14,8 +14,8 @@ namespace tree {
     Node* LEFT(Node* node);
     Node* RIGHT(Node* node);
     data_type INFO(Node* node);
-    int FIND(data_type data, Node* tree);
-    Node* MAKE_TREE();
+    int FIND(data_type key, data_type data[], int n);
+    Node* MAKE_TREE(data_type data[], int n);
     Node* INSERT(Node* tree, data_type data, int index);
     void TLR(Node* tree, int level);
     void LTR(Node* tree, int level);
