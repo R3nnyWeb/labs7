@@ -17,7 +17,7 @@ ARM Macro Assembler    Page 1
    11 00000000         ;bl pp1
    12 00000000         ;bl pp2
    13 00000000         ;bl pp3
-   14 00000000         ; bl pp4
+   14 00000000         ;bl pp4
    15 00000000         ;bl pp5
    16 00000000         ;bl pp6
    17 00000000         ;bl pp7
@@ -152,8 +152,9 @@ ARM Macro Assembler    Page 3
   127 0000016C 4309            orrs             r1,r1       ;На отрица�
                                                             �ельность
   128 0000016E F010 0F01       tsts             r0, #1
-  129 00000172                 end
-              00 00 12345678 
+  129 00000172 4770            bx               lr
+  130 00000174                 end
+              12345678 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=.\objects\pr_2.d -o.\objects\pr_2.o -I.\RTE\_Target_1 -IC:\Keil_v5
 \ARM\PACK\Keil\MDR1986BExx\1.4\Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\inc 

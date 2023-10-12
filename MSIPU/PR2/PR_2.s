@@ -11,10 +11,10 @@ start
 	 ;bl pp1
 	;bl pp2
 	 ;bl pp3
-	; bl pp4
-	 ;bl pp5
-	 ;bl pp6
-	  ;bl pp7
+	;bl pp4
+	;bl pp5
+	;bl pp6
+	;bl pp7
 
 	bl pp8
 	b start
@@ -126,4 +126,5 @@ pp8
 	cmps r1, 0 ;На отрицательность
 	orrs r1,r1 ;На отрицательность
 	tsts r0, #1
+	bx lr
 	end
