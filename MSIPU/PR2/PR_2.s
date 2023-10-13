@@ -16,7 +16,8 @@ start
 	 ;bl pp6
 	  ;bl pp7
 
-	bl pp8
+	;bl pp8
+	bl pp9
 	b start
 pp1
 	ldr r0, =0x12345678
@@ -123,7 +124,15 @@ pp8
 	cmps r0, r0 
 	ands r5,r0, #1 ;0
 	ands r5,r0, #4 ;1
-	cmps r1, 0 ;На отрицательность
+	cmps r1, #0 ;На отрицательность
 	orrs r1,r1 ;На отрицательность
 	tsts r0, #1
+pp9
+	mov r0, #0x15
+	mov r1, #0x15
+	rors r2,r0, #1
+	rors r3,r2, #1
+	rrxs r4, r1
+	rrxs r5,r4
+	bx lr
 	end
