@@ -17,151 +17,143 @@ ARM Macro Assembler    Page 1
    11 00000000         ;bl pp1
    12 00000000         ;bl pp2
    13 00000000         ;bl pp3
-   14 00000000         ; bl pp4
+   14 00000000         ;bl pp4
    15 00000000         ;bl pp5
    16 00000000         ;bl pp6
    17 00000000         ;bl pp7
    18 00000000         
-   19 00000000         ;bl pp8
-   20 00000000 F000 F8B7       bl               pp9
-   21 00000004 E7FC            b                start
-   22 00000006         pp1
-   23 00000006 4861            ldr              r0, =0x12345678
-   24 00000008 F64F 71FF       movw             r1, #0xffff
-   25 0000000C EA4F 4231       mov              r2, r1, ror #16
-   26 00000010 F04F 0305       mov              r3, #0x05
-   27 00000014 F013 0F01       tsts             r3, #1
-   28 00000018 BF14 EA00 
+   19 00000000 F000 F8A6       bl               pp8
+   20 00000004 E7FC            b                start
+   21 00000006         pp1
+   22 00000006 485B            ldr              r0, =0x12345678
+   23 00000008 F64F 71FF       movw             r1, #0xffff
+   24 0000000C EA4F 4231       mov              r2, r1, ror #16
+   25 00000010 F04F 0305       mov              r3, #0x05
+   26 00000014 F013 0F01       tsts             r3, #1
+   27 00000018 BF14 EA00 
               0401             andne            r4, r0, r1
-   29 0000001E EA00 0402       andeq            r4, r0, r2
-   30 00000022 F013 0F02       tsts             r3, #2
-   31 00000026 BF14 EA40 
+   28 0000001E EA00 0402       andeq            r4, r0, r2
+   29 00000022 F013 0F02       tsts             r3, #2
+   30 00000026 BF14 EA40 
               0501             orrne            r5, r0, r1
-   32 0000002C EA40 0502       orreq            r5, r0, r2
-   33 00000030 F013 0F04       tsts             r3, #4
-   34 00000034 BF14 EA80 
+   31 0000002C EA40 0502       orreq            r5, r0, r2
+   32 00000030 F013 0F04       tsts             r3, #4
+   33 00000034 BF14 EA80 
               0601             eorne            r6, r0, r1
-   35 0000003A EA80 0602       eoreq            r6, r0, r2
-   36 0000003E F000 07FF       and              r7, r0,#0xff
-   37 00000042 F400 487F       and              r8, r0,#0xff00
-   38 00000046 EA4F 2818       lsr              r8, r8, #8
-   39 0000004A F400 097F       and              r9, r0, #0xff0000
-   40 0000004E EA4F 4919       lsr              r9 ,r9, #16
-   41 00000052 F000 4A7F       and              r10, r0, #0xff000000
-   42 00000056 EA4F 6A1A       lsr              r10,r10, #24
-   43 0000005A 4770            bx               lr
-   44 0000005C         pp2
-   45 0000005C F04F 5000       mov              r0, #0x20000000
-   46 00000060 F04F 5108       mov              r1, #0x22000000
-   47 00000064 F04F 0200       mov              r2, #0
-   48 00000068 F04F 0301       mov              r3, #1
-   49 0000006C 6002            str              r2, [r0]
-   50 0000006E 600B            str              r3, [r1]
-   51 00000070 604B            str              r3, [r1,#0x04]
-   52 00000072 608B            str              r3, [r1,#0x08]
-   53 00000074 60CB            str              r3, [r1,#0x0c]
-   54 00000076 688D            ldr              r5, [r1,#0x08]
-   55 00000078 6806            ldr              r6, [r0]
-   56 0000007A F04F 070A       mov              r7, #0x0a
+   34 0000003A EA80 0602       eoreq            r6, r0, r2
+   35 0000003E F000 07FF       and              r7, r0,#0xff
+   36 00000042 F400 487F       and              r8, r0,#0xff00
+   37 00000046 EA4F 2818       lsr              r8, r8, #8
+   38 0000004A F400 097F       and              r9, r0, #0xff0000
+   39 0000004E EA4F 4919       lsr              r9 ,r9, #16
+   40 00000052 F000 4A7F       and              r10, r0, #0xff000000
+   41 00000056 EA4F 6A1A       lsr              r10,r10, #24
+   42 0000005A 4770            bx               lr
+   43 0000005C         pp2
+   44 0000005C F04F 5000       mov              r0, #0x20000000
+   45 00000060 F04F 5108       mov              r1, #0x22000000
+   46 00000064 F04F 0200       mov              r2, #0
+   47 00000068 F04F 0301       mov              r3, #1
+   48 0000006C 6002            str              r2, [r0]
+   49 0000006E 600B            str              r3, [r1]
+   50 00000070 604B            str              r3, [r1,#0x04]
+   51 00000072 608B            str              r3, [r1,#0x08]
+   52 00000074 60CB            str              r3, [r1,#0x0c]
+   53 00000076 688D            ldr              r5, [r1,#0x08]
+   54 00000078 6806            ldr              r6, [r0]
+   55 0000007A F04F 070A       mov              r7, #0x0a
+   56 0000007E F8C0 7003       str              r7, [r0,#0x03]
 
 
 
 ARM Macro Assembler    Page 2 
 
 
-   57 0000007E F8C0 7003       str              r7, [r0,#0x03]
-   58 00000082 664A            str              r2, [r1,#0x64]
-   59 00000084 66CA            str              r2, [r1,#0x6c]
-   60 00000086 F8D0 8003       ldr              r8, [r0,#0x03]
-   61 0000008A 4770            bx               lr
-   62 0000008C         pp3
-   63 0000008C F06F 002C       mov              r0, #-45
-   64 00000090 F44F 7143       mov              r1, #780
-   65 00000094 F04F 022D       mov              r2, #45
-   66 00000098 F04F 0315       mov              r3, #21
-   67 0000009C EA4F 1500       lsl              r5, r0, #4
-   68 000000A0 EA4F 1601       lsl              r6, r1, #4
-   69 000000A4 EA4F 1702       lsl              r7, r2, #4
-   70 000000A8 EA4F 1803       lsl              r8, r3, #4
-   71 000000AC EA4F 1520       asr              r5, r0, #4
-   72 000000B0 EA4F 1621       asr              r6, r1, #4
-   73 000000B4 EA4F 1722       asr              r7, r2, #4
-   74 000000B8 EA4F 1823       asr              r8, r3, #4
-   75 000000BC EA4F 1510       lsr              r5, r0, #4
-   76 000000C0 EA4F 1611       lsr              r6, r1, #4
-   77 000000C4 EA4F 1712       lsr              r7, r2, #4
-   78 000000C8 EA4F 1813       lsr              r8, r3, #4
-   79 000000CC EA4F 1530       ror              r5, r0, #4
-   80 000000D0 EA4F 1631       ror              r6, r1, #4
-   81 000000D4 EA4F 1732       ror              r7, r2, #4
-   82 000000D8 EA4F 1833       ror              r8, r3, #4
-   83 000000DC EA5F 0530       rrxs             r5, r0
-   84 000000E0 EA5F 0632       rrxs             r6, r2
-   85 000000E4 EA5F 0733       rrxs             r7, r3
-   86 000000E8 EA5F 0834       rrxs             r8, r4
-   87 000000EC 4770            bx               lr
-   88 000000EE         pp4
-   89 000000EE F06F 002C       mov              r0, #-45
-   90 000000F2 F44F 7143       mov              r1, #780
-   91 000000F6 F04F 022D       mov              r2, #45
-   92 000000FA F04F 0315       mov              r3, #21
-   93 000000FE 4408            add              r0, r1
-   94 00000100 4410            add              r0,r2
-   95 00000102 4418            add              r0,r3
-   96 00000104 F06F 002C       mov              r0, #-45
-   97 00000108 EA80 0001       eor              r0, r1
-   98 0000010C EA80 0002       eor              r0,r2
-   99 00000110 EA80 0003       eor              r0,r3
-  100 00000114 EA80 0004       eor              r0,r4
-  101 00000118         pp5
-  102 00000118 F04F 0005       mov              r0, #0x05
-  103 0000011C F04F 0116       mov              r1, #0x16
-  104 00000120 F04F 0227       mov              r2, #0x27
-  105 00000124 F04F 0338       mov              r3, #0x38
-  106 00000128         ;r2 = r3 r0 r1 r2
-  107 00000128 EA4C 6C03       orr              r12, r3, lsl #24
-  108 0000012C EA4C 4C00       orr              r12, r0, lsl #16
-  109 00000130 EA4C 2C01       orr              r12, r1, lsl #8
-  110 00000134 EA4C 0C02       orr              r12, r2
-  111 00000138         pp6
-  112 00000138 F04F 0001       mov              r0, #1
-  113 0000013C EA5F 0030       rrxs             r0,r0
-  114 00000140         pp7
-  115 00000140 F04F 0064       mov              r0, #100
+   57 00000082 664A            str              r2, [r1,#0x64]
+   58 00000084 66CA            str              r2, [r1,#0x6c]
+   59 00000086 F8D0 8003       ldr              r8, [r0,#0x03]
+   60 0000008A 4770            bx               lr
+   61 0000008C         pp3
+   62 0000008C F06F 002C       mov              r0, #-45
+   63 00000090 F44F 7143       mov              r1, #780
+   64 00000094 F04F 022D       mov              r2, #45
+   65 00000098 F04F 0315       mov              r3, #21
+   66 0000009C EA4F 1500       lsl              r5, r0, #4
+   67 000000A0 EA4F 1601       lsl              r6, r1, #4
+   68 000000A4 EA4F 1702       lsl              r7, r2, #4
+   69 000000A8 EA4F 1803       lsl              r8, r3, #4
+   70 000000AC EA4F 1520       asr              r5, r0, #4
+   71 000000B0 EA4F 1621       asr              r6, r1, #4
+   72 000000B4 EA4F 1722       asr              r7, r2, #4
+   73 000000B8 EA4F 1823       asr              r8, r3, #4
+   74 000000BC EA4F 1510       lsr              r5, r0, #4
+   75 000000C0 EA4F 1611       lsr              r6, r1, #4
+   76 000000C4 EA4F 1712       lsr              r7, r2, #4
+   77 000000C8 EA4F 1813       lsr              r8, r3, #4
+   78 000000CC EA4F 1530       ror              r5, r0, #4
+   79 000000D0 EA4F 1631       ror              r6, r1, #4
+   80 000000D4 EA4F 1732       ror              r7, r2, #4
+   81 000000D8 EA4F 1833       ror              r8, r3, #4
+   82 000000DC EA5F 0530       rrxs             r5, r0
+   83 000000E0 EA5F 0632       rrxs             r6, r2
+   84 000000E4 EA5F 0733       rrxs             r7, r3
+   85 000000E8 EA5F 0834       rrxs             r8, r4
+   86 000000EC 4770            bx               lr
+   87 000000EE         pp4
+   88 000000EE F06F 002C       mov              r0, #-45
+   89 000000F2 F44F 7143       mov              r1, #780
+   90 000000F6 F04F 022D       mov              r2, #45
+   91 000000FA F04F 0315       mov              r3, #21
+   92 000000FE 4408            add              r0, r1
+   93 00000100 4410            add              r0,r2
+   94 00000102 4418            add              r0,r3
+   95 00000104 F06F 002C       mov              r0, #-45
+   96 00000108 EA80 0001       eor              r0, r1
+   97 0000010C EA80 0002       eor              r0,r2
+   98 00000110 EA80 0003       eor              r0,r3
+   99 00000114 EA80 0004       eor              r0,r4
+  100 00000118         pp5
+  101 00000118 F04F 0005       mov              r0, #0x05
+  102 0000011C F04F 0116       mov              r1, #0x16
+  103 00000120 F04F 0227       mov              r2, #0x27
+  104 00000124 F04F 0338       mov              r3, #0x38
+  105 00000128         ;r2 = r3 r0 r1 r2
+  106 00000128 EA4C 6C03       orr              r12, r3, lsl #24
+  107 0000012C EA4C 4C00       orr              r12, r0, lsl #16
+  108 00000130 EA4C 2C01       orr              r12, r1, lsl #8
+  109 00000134 EA4C 0C02       orr              r12, r2
+  110 00000138         pp6
+  111 00000138 F04F 0001       mov              r0, #1
+  112 0000013C EA5F 0030       rrxs             r0,r0
+  113 00000140         pp7
+  114 00000140 F04F 0064       mov              r0, #100
+  115 00000144 EA4F 0060       asr              r0, #1      ;Деление н�
 
 
 
 ARM Macro Assembler    Page 3 
 
 
-  116 00000144 EA4F 0060       asr              r0, #1      ;Деление н�
                                                             � 2
-  117 00000148 EA4F 0080       mov              r0, r0, asl #2 ;Умножен�
+  116 00000148 EA4F 0080       mov              r0, r0, asl #2 ;Умножен�
                                                             �е на 4
-  118 0000014C EA4F 00E0       asr              r0, #3      ;Деление н�
+  117 0000014C EA4F 00E0       asr              r0, #3      ;Деление н�
                                                             � 8
-  119 00000150         pp8
-  120 00000150 F04F 0064       mov              r0, #100
-  121 00000154 F04F 31FF       mov              r1, #-1
-  122 00000158 F010 0F01       tsts             r0, #1      ;0
-  123 0000015C F010 0F04       tsts             r0, #4      ;1
-  124 00000160 4280            cmps             r0, r0
-  125 00000162 F010 0501       ands             r5,r0, #1   ;0
-  126 00000166 F010 0504       ands             r5,r0, #4   ;1
-  127 0000016A 2900            cmps             r1, #0      ;На отрица�
+  118 00000150         pp8
+  119 00000150 F04F 0064       mov              r0, #100
+  120 00000154 F04F 31FF       mov              r1, #-1
+  121 00000158 F010 0F01       tsts             r0, #1      ;0
+  122 0000015C F010 0F04       tsts             r0, #4      ;1
+  123 00000160 4280            cmps             r0, r0
+  124 00000162 F010 0501       ands             r5,r0, #1   ;0
+  125 00000166 F010 0504       ands             r5,r0, #4   ;1
+  126 0000016A 2900            cmps             r1, 0       ;На отрица�
                                                             �ельность
-  128 0000016C 4309            orrs             r1,r1       ;На отрица�
+  127 0000016C 4309            orrs             r1,r1       ;На отрица�
                                                             �ельность
-  129 0000016E F010 0F01       tsts             r0, #1
-  130 00000172         pp9
-  131 00000172 F04F 0015       mov              r0, #0x15
-  132 00000176 F04F 0115       mov              r1, #0x15
-  133 0000017A EA5F 0270       rors             r2,r0, #1
-  134 0000017E EA5F 0372       rors             r3,r2, #1
-  135 00000182 EA5F 0431       rrxs             r4, r1
-  136 00000186 EA5F 0534       rrxs             r5,r4
-  137 0000018A 4770            bx               lr
-  138 0000018C                 end
+  128 0000016E F010 0F01       tsts             r0, #1
+  129 00000172 4770            bx               lr
+  130 00000174                 end
               12345678 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=.\objects\pr_2.d -o.\objects\pr_2.o -I.\RTE\_Target_1 -IC:\Keil_v5
@@ -217,7 +209,7 @@ pp1 00000006
 
 Symbol: pp1
    Definitions
-      At line 22 in file PR_2.s
+      At line 21 in file PR_2.s
    Uses
       None
 Comment: pp1 unused
@@ -225,7 +217,7 @@ pp2 0000005C
 
 Symbol: pp2
    Definitions
-      At line 44 in file PR_2.s
+      At line 43 in file PR_2.s
    Uses
       None
 Comment: pp2 unused
@@ -233,7 +225,7 @@ pp3 0000008C
 
 Symbol: pp3
    Definitions
-      At line 62 in file PR_2.s
+      At line 61 in file PR_2.s
    Uses
       None
 Comment: pp3 unused
@@ -241,7 +233,7 @@ pp4 000000EE
 
 Symbol: pp4
    Definitions
-      At line 88 in file PR_2.s
+      At line 87 in file PR_2.s
    Uses
       None
 Comment: pp4 unused
@@ -249,7 +241,7 @@ pp5 00000118
 
 Symbol: pp5
    Definitions
-      At line 101 in file PR_2.s
+      At line 100 in file PR_2.s
    Uses
       None
 Comment: pp5 unused
@@ -257,7 +249,7 @@ pp6 00000138
 
 Symbol: pp6
    Definitions
-      At line 111 in file PR_2.s
+      At line 110 in file PR_2.s
    Uses
       None
 Comment: pp6 unused
@@ -265,7 +257,7 @@ pp7 00000140
 
 Symbol: pp7
    Definitions
-      At line 114 in file PR_2.s
+      At line 113 in file PR_2.s
    Uses
       None
 Comment: pp7 unused
@@ -279,18 +271,10 @@ ARM Macro Assembler    Page 2 Alphabetic symbol ordering
 Relocatable symbols
 
    Definitions
-      At line 119 in file PR_2.s
+      At line 118 in file PR_2.s
    Uses
-      None
-Comment: pp8 unused
-pp9 00000172
-
-Symbol: pp9
-   Definitions
-      At line 130 in file PR_2.s
-   Uses
-      At line 20 in file PR_2.s
-Comment: pp9 used once
+      At line 19 in file PR_2.s
+Comment: pp8 used once
 program 00000000
 
 Symbol: program
@@ -306,7 +290,7 @@ Symbol: start
       At line 10 in file PR_2.s
    Uses
       At line 7 in file PR_2.s
-      At line 21 in file PR_2.s
+      At line 20 in file PR_2.s
 
-11 symbols
-349 symbols in table
+10 symbols
+348 symbols in table
