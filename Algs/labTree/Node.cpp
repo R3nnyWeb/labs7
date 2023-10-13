@@ -22,9 +22,9 @@ namespace tree {
             return new Node(data, index);
         } else if (data < INFO(tree)) {
             tree->left = INSERT(LEFT(tree), data, index);
-        } else if (data > INFO(tree)) {
+        } else {
             tree->right = INSERT(RIGHT(tree), data, index);
-        } else throw "Repeat keys";
+        }
         return tree;
     }
 
