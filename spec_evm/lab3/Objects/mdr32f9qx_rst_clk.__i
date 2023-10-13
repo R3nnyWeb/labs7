@@ -1,0 +1,10 @@
+--c99 --gnu -c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork --split_sections
+-I.\RTE\Device\MDR1986BE92
+-I.\RTE\_Target_1
+-IC:\Keil_v5\ARM\PACK\Keil\MDR1986BExx\1.4\Config
+-IC:\Keil_v5\ARM\PACK\Keil\MDR1986BExx\1.4\Libraries\CMSIS\CM3\CoreSupport
+-IC:\Keil_v5\ARM\PACK\Keil\MDR1986BExx\1.4\Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\inc
+-IC:\Keil_v5\ARM\PACK\Keil\MDR1986BExx\1.4\Libraries\MDR32F9Qx_StdPeriph_Driver\inc
+-IC:\Keil_v5\ARM\CMSIS\Include
+-D__UVISION_VERSION="526" -D_RTE_ -DUSE_MDR32F9Q2_Rev1
+-o .\objects\mdr32f9qx_rst_clk.o --omf_browse .\objects\mdr32f9qx_rst_clk.crf --depend .\objects\mdr32f9qx_rst_clk.d "C:\Keil_v5\ARM\PACK\Keil\MDR1986BExx\1.4\Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_rst_clk.c"
