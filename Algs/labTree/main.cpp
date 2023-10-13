@@ -12,6 +12,6 @@ int main() {
     int index2 = FIND(99, data, n);
     cout << index << endl;
     cout << index2 << endl;
-    LTR(tree, 0);
+    LTR(tree);
     return 0;
 }
