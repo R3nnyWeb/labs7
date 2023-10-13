@@ -20,10 +20,10 @@ namespace tree {
     Node *INSERT(Node *tree, data_type data, int index) {
         if (tree == nullptr) {
             return new Node(data, index);
-        } else if (data < tree->data) {
-            tree->left = INSERT(tree->left, data, index);
-        } else if (data > tree->data) {
-            tree->right = INSERT(tree->right, data, index);
+        } else if (data < INFO(tree)) {
+            tree->left = INSERT(LEFT(tree), data, index);
+        } else if (data > INFO(tree)) {
+            tree->right = INSERT(RIGHT(tree), data, index);
         } else throw "Repeat keys";
         return tree;
     }
@@ -40,7 +40,8 @@ namespace tree {
     data_type INFO(Node *node) {
         return node->data;
     }
-    int FIND_IN_TREE(data_type key, Node *tree){
+
+    int FIND_IN_TREE(data_type key, Node *tree) {
         if (tree == nullptr) return -1;
         else if (INFO(tree) == key)
             return tree->index;
@@ -50,28 +51,28 @@ namespace tree {
     }
 
     int FIND(data_type key, data_type data[], int n) {
-        Node* tree = MAKE_TREE(data, n);
+        Node *tree = MAKE_TREE(data, n);
         return FIND_IN_TREE(key, tree);
     }
 
     void TLR(Node *tree) {
         if (tree == nullptr) return;
-        cout << tree->data << " ";
-        TLR(tree->left);
-        TLR(tree->right);
+        cout << INFO(tree) << " ";
+        TLR(LEFT(tree));
+        TLR(RIGHT(tree));
     }
 
     void LTR(Node *tree) {
         if (tree == nullptr) return;
-        LTR(tree->left);
-        cout << tree->data << " ";
-        LTR(tree->right);
+        LTR(LEFT(tree));
+        cout << INFO(tree) << " ";
+        LTR(RIGHT(tree));
     }
 
     void LRT(Node *tree) {
         if (tree == nullptr) return;
-        LRT(tree->left);
-        LRT(tree->right);
-        cout << tree->data << " ";
+        LRT(LEFT(tree));
+        LRT(RIGHT(tree));
+        cout << INFO(tree) << " ";
     }
 }
