@@ -20,6 +20,7 @@ void CPUCLKConfig(void) //настройка тактирования ЦПУ
 RST_CLK_HSEconfig(RST_CLK_HSE_ON); //включение внешнего
 //высокочастотного генератора
 while (RST_CLK_HSEstatus()!=SUCCESS); //запрос состояния,
+RST_CLK_CPU_PLLconfig(RST_CLK_CPU_PLLsrcHSEdiv2,RST_CLK_CPU_PLLmul1);
 //только если готов, то переход к следующим действиям
 RST_CLK_CPUclkSelection(RST_CLK_CPUclkCPU_C3);//переключение на CPU_C3
 }

@@ -13,10 +13,9 @@ void portSetUp(){
 }
 void CPUCLKConfig(void) //настройка тактирования ЦПУ
 {
-	RST_CLK_HSIclkPrescaler(RST_CLK_HSIclkDIV4);
-		RST_CLK_GetClocksFreq(&freqStats);
+	RST_CLK_CPUclkPrescaler(RST_CLK_CPUclkDIV8);
 	RST_CLK_CPUclkSelection(RST_CLK_CPUclkCPU_C3);
-	RST_CLK_GetClocksFreq(&freqStats);
+	
 	
 	//RST_CLK_CPUclkPrescaler(RST_CLK_CPUclkDIV4);
 	//RST_CLK_CPUclkSelection(RST_CLK_CPUclkHSI);
@@ -38,16 +37,15 @@ int main (void) //основная процедура
 	
 	
 
-	RST_CLK_GetClocksFreq(&freqStats);
+
 	
-	countToPortA(10);
-		
+	countToPortA(5);
+	
+	
 	
 	CPUCLKConfig(); //переключение тактового генератора
-	
-	RST_CLK_GetClocksFreq(&freqStats);
 
-	countToPortA(10);
+	countToPortA(5);
 	
 	uint32_t count = 0;
 	while(1){
