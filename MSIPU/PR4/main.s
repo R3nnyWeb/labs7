@@ -12,7 +12,8 @@ start
 	 ;bl pp2
 	; bl pp3
 	bl pp4 ;Array create
-	bl pp5 ;Avg
+	;bl pp5 ;Avg
+	bl pp6 ; beetween
 m 	b 	m
 pp1
 	mov r0, #0x20000000
@@ -89,4 +90,21 @@ m5
 	lsr r3, #4
 	strb r3, [r0]
 	bx lr
+pp6 ;avg
+	mov r0, #0x20000000
+	mov r1, #0 ;counter
+m6	
+	cmps r1, #16
+	bgt m7
+	ldrb r5, [r0],#1
+	add r1, #1
+	cmp r5, #0x40
+	bls m6
+	cmp r5, #0x7f
+	bgt m6
+	add r3, #1
+	b m6
+m7
+	strb r3, [r0]
+	bx lr	
 end
