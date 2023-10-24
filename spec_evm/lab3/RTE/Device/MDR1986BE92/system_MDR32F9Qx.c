@@ -131,7 +131,7 @@ void SystemCoreClockUpdate (void)
 void SystemInit (void)
 {
 	/* Reset the RST clock configuration to the default reset state */
-	for(int i = 0; i < 500000; i++){}
+	for(int i = 0; i < 5000000; i++){}
   /* Reset all clock but RST_CLK & BKP_CLC bits */
   MDR_RST_CLK->PER_CLOCK   = (uint32_t)0x8000010;
 

@@ -1,0 +1,20 @@
+void CPUCLKConfig(void) //настройка тактирования ЦПУ
+{
+	RST_CLK_WarmDeInit();
+	//RST_CLK_HSEconfig(RST_CLK_HSE_ON);
+	MDR_RST_CLK->HS_CONTROL |= 1;
+	//запрос состояния, только если готов, то переход к следующим действиям
+	//while (RST_CLK_HSEstatus()!=SUCCESS);
+	while(MDR_RST_CLK->CLOCK_STATUS & 0b100);
+	//RST_CLK_CPU_PLLcmd(ENABLE);
+	MDR_RST_CLK->PLL_CONTROL |= 0b100;
+	//RST_CLK_CPU_PLLconfig(DIV, PLL);
+	MDR_RST_CLK->PLL_CONTROL |= 0x400;
+	MDR_RST_CLK->CPU_CLOCK |= 0b10
+	//while (RST_CLK_CPU_PLLstatus()!=SUCCESS);
+	while(MDR_RST_CLK->CLOCK_STATUS & 0b010);
+	//RST_CLK_CPU_PLLuse(ENABLE);
+	MDR_RST_CLK->CPU_CLOCK |= 0b100
+	//RST_CLK_CPUclkSelection(RST_CLK_CPUclkCPU_C3);
+	MDR_RST_CLK->CPU_CLOCK |=0x100
+}
