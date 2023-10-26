@@ -10,9 +10,10 @@ stack_top
 start
 	;bl pp1
 	;bl pp2
-	 ;bl pp3
-	 bl pp4
-	 ;bl pp5
+	;bl pp3
+	;bl pp4
+	;bl pp5
+	bl pp6
 	b start
 pp1
 	mov r0, #0x20000000
@@ -70,5 +71,13 @@ pp5
 	smlal r5,r6,r4,r3
 	smlal r5,r6,r4,r3
 	smlal r5,r6,r4,r3
+	bx lr
+pp6
+	mov r0, #-2
+	mov r1, #6
+	udiv r2, r1, r0
+	sdiv r3, r1, r0
+	umull r5, r4, r1, r0
+	smull r7, r6, r1, r0
 	bx lr
 end
