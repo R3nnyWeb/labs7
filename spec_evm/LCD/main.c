@@ -76,7 +76,7 @@ void LCDTestPrint(void)
 {
 	SetPage(1,2);					//установить 2 страницу 1-ого чипа
 	SetAdress(1,9);				//установить адрес - 9, для 1-ого чипа, (2 страницы)
-	WriteData (1,0x20);		//вывод на экран точки с положением 0x20 (по адресу 5, 2 страница, чип 1)
+	WriteData (1,0x20);		//вывод на экран точки с положением 0x20 (по адресу 5), 2 страница, чип 1)
 	SetPage(2,3);					//установить 3 страницу 2-ого чипа
 	SetAdress(2,0);				//установить адрес - 0, для 2-ого чипа, (3 страницы)
 	for (int i=0;i<7;i++)	//перебор комбинаций от 0 до 7
@@ -91,9 +91,25 @@ void LCDTestPrint(void)
 		}
 }
 
-void setPixel(int x, int y){
+void setPixel(uint8_t x, uint8_t y, uint8_t data){
 	int chip;
-	if(x<=64) chip=1 else chip=2
+	uint8_t chip = (x / 64) + 1;      // Определяем номер чипа на основе координаты x
+  uint8_t page = y / 8;             // Определяем номер страницы на основе координаты y
+  uint8_t address = x % 64;         // Определяем адрес (колонку) на основе координаты x
+	
+	SetPage(chip,page);
+	SetAdress(chip, adress);
+	
+	uint8_t mask = 1 << (y % 8);
+	uint8_t cellData = ReadData(chip);
+	if (data) {
+        cellData |= mask;  // Установка бита в 1
+    } else {
+        cellData &= ~mask;  // Сброс бита в 0
+    }
+
+    // Записываем обновленное значение обратно в ячейку
+    WriteData(chip, cellData);
 }
 
 int main (void)		//точка входа в программу	
