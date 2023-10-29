@@ -1,0 +1,204 @@
+<mxfile host="Electron" modified="2023-10-25T11:49:21.665Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.2 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="lc3nnMz8GZAmdtytPxFQ" version="22.0.2" type="device">
+  <diagram name="Страница — 1" id="5vsdX4nOHlxWFNZHKulQ">
+    <mxGraphModel dx="574" dy="613" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="RWchYaKaiMouHDZudWtb-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="RWchYaKaiMouHDZudWtb-1" target="RWchYaKaiMouHDZudWtb-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-1" value="Начало" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="100" y="90" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="RWchYaKaiMouHDZudWtb-2" target="RWchYaKaiMouHDZudWtb-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-2" value="Разрешение тактирования порта C" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="82.5" y="150" width="135" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="RWchYaKaiMouHDZudWtb-4" target="RWchYaKaiMouHDZudWtb-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-4" value="Инициализация вывода светодиода" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="82.5" y="220" width="135" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="RWchYaKaiMouHDZudWtb-6" target="RWchYaKaiMouHDZudWtb-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-6" value="Цикл А&lt;br&gt;i=0; i&amp;lt;5; i++" style="shape=loopLimit;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="81.25" y="290" width="137.5" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-10" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="81.25" y="440" width="137.5" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-8" value="" style="shape=loopLimit;whiteSpace=wrap;html=1;rotation=-180;" vertex="1" parent="RWchYaKaiMouHDZudWtb-10">
+          <mxGeometry width="137.5" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-9" value="Цикл A" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="RWchYaKaiMouHDZudWtb-10">
+          <mxGeometry x="38.75" y="5" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="RWchYaKaiMouHDZudWtb-11" target="RWchYaKaiMouHDZudWtb-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-11" value="Задержка(1000000)&lt;br&gt;Включение светодиода&lt;br&gt;Задержка(1000000)&lt;br&gt;Выключение светодиода" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="76.25" y="350" width="147.5" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="RWchYaKaiMouHDZudWtb-16" target="RWchYaKaiMouHDZudWtb-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-16" value="CPUCLKConfig()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="265" y="130" width="137.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="RWchYaKaiMouHDZudWtb-8" target="RWchYaKaiMouHDZudWtb-16">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="250" y="460" />
+              <mxPoint x="250" y="110" />
+              <mxPoint x="334" y="110" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="RWchYaKaiMouHDZudWtb-20" target="RWchYaKaiMouHDZudWtb-25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-20" value="Цикл Б" style="shape=loopLimit;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="265" y="190" width="137.5" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-21" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="265" y="340" width="137.5" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-22" value="" style="shape=loopLimit;whiteSpace=wrap;html=1;rotation=-180;" vertex="1" parent="RWchYaKaiMouHDZudWtb-21">
+          <mxGeometry width="137.5" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-23" value="Цикл Б" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="RWchYaKaiMouHDZudWtb-21">
+          <mxGeometry x="38.75" y="5" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="RWchYaKaiMouHDZudWtb-25" target="RWchYaKaiMouHDZudWtb-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-25" value="Задержка(1000000)&lt;br&gt;Включение светодиода&lt;br&gt;Задержка(1000000)&lt;br&gt;Выключение светодиода" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="260" y="250" width="147.5" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-28" value="Начало" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="283.75" y="400" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="RWchYaKaiMouHDZudWtb-22" target="RWchYaKaiMouHDZudWtb-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="RWchYaKaiMouHDZudWtb-30" target="RWchYaKaiMouHDZudWtb-31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-30" value="Начало&lt;br&gt;CPUCLKConfig" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="480" y="120" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="RWchYaKaiMouHDZudWtb-31" target="RWchYaKaiMouHDZudWtb-39">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-31" value="Включение HSE" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="462.5" y="180" width="135" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-37" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="RWchYaKaiMouHDZudWtb-32" target="RWchYaKaiMouHDZudWtb-36">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-32" value="Настройка деления частоты" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="462.5" y="340" width="135" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-34" value="Конец&lt;br&gt;CPUCLKConfig" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="480" y="460" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-38" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="RWchYaKaiMouHDZudWtb-36" target="RWchYaKaiMouHDZudWtb-34">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-36" value="Переключение на CPU_C3" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="461.88" y="400" width="135" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="RWchYaKaiMouHDZudWtb-39" target="RWchYaKaiMouHDZudWtb-44">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-39" value="Цикл С&lt;br&gt;Ожидание включения HSE" style="shape=loopLimit;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="445" y="240" width="170" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-43" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="445" y="295" width="168.75" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-44" value="" style="shape=loopLimit;whiteSpace=wrap;html=1;rotation=-180;" vertex="1" parent="RWchYaKaiMouHDZudWtb-43">
+          <mxGeometry width="168.75" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-45" value="Цикл C" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="RWchYaKaiMouHDZudWtb-43">
+          <mxGeometry x="47.55681818181818" y="3.75" width="73.63636363636364" height="22.5" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="RWchYaKaiMouHDZudWtb-44" target="RWchYaKaiMouHDZudWtb-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-51" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="RWchYaKaiMouHDZudWtb-52" target="RWchYaKaiMouHDZudWtb-54">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-52" value="Начало&lt;br&gt;CPUCLKConfig" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="681" y="120" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="RWchYaKaiMouHDZudWtb-54" target="RWchYaKaiMouHDZudWtb-61">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-54" value="Включение HSE" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="663.5" y="175" width="135" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-67" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="RWchYaKaiMouHDZudWtb-56" target="RWchYaKaiMouHDZudWtb-66">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-56" value="Настройка умножения частоты" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="663.5" y="331" width="135" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-57" value="Конец&lt;br&gt;CPUCLKConfig" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="681.62" y="585" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-58" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" target="RWchYaKaiMouHDZudWtb-57">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="731.5999999999999" y="560" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-59" value="Переключение на CPU_C3" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="664.12" y="530" width="135" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-60" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="RWchYaKaiMouHDZudWtb-61" target="RWchYaKaiMouHDZudWtb-63">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-61" value="Цикл С&lt;br&gt;Ожидание включения HSE" style="shape=loopLimit;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="646" y="231" width="170" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-62" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="646" y="286" width="168.75" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-63" value="" style="shape=loopLimit;whiteSpace=wrap;html=1;rotation=-180;" vertex="1" parent="RWchYaKaiMouHDZudWtb-62">
+          <mxGeometry width="168.75" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-64" value="Цикл C" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="RWchYaKaiMouHDZudWtb-62">
+          <mxGeometry x="47.55681818181818" y="3.75" width="73.63636363636364" height="22.5" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-65" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="RWchYaKaiMouHDZudWtb-63" target="RWchYaKaiMouHDZudWtb-56">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-66" value="Включение PLL" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="664.12" y="390" width="135" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-69" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="RWchYaKaiMouHDZudWtb-70" target="RWchYaKaiMouHDZudWtb-72">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-70" value="Цикл С&lt;br&gt;Ожидание включения HSE" style="shape=loopLimit;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="646.62" y="430" width="170" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-71" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="646.62" y="485" width="168.75" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-72" value="" style="shape=loopLimit;whiteSpace=wrap;html=1;rotation=-180;" vertex="1" parent="RWchYaKaiMouHDZudWtb-71">
+          <mxGeometry width="168.75" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-73" value="Цикл C" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="RWchYaKaiMouHDZudWtb-71">
+          <mxGeometry x="47.55681818181818" y="3.75" width="73.63636363636364" height="22.5" as="geometry" />
+        </mxCell>
+        <mxCell id="RWchYaKaiMouHDZudWtb-74" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="RWchYaKaiMouHDZudWtb-72" target="RWchYaKaiMouHDZudWtb-59">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
