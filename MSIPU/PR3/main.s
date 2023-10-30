@@ -79,5 +79,6 @@ pp6
 	sdiv r3, r1, r0
 	umull r5, r4, r1, r0
 	smull r7, r6, r1, r0
+	mls r3, r0, r1, r4
 	bx lr
 end

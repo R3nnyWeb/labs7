@@ -91,8 +91,9 @@ ARM Macro Assembler    Page 2
    79 000000C4 FB91 F3F0       sdiv             r3, r1, r0
    80 000000C8 FBA1 5400       umull            r5, r4, r1, r0
    81 000000CC FB81 7600       smull            r7, r6, r1, r0
-   82 000000D0 4770            bx               lr
-   83 000000D2         end
+   82 000000D0 FB00 4311       mls              r3, r0, r1, r4
+   83 000000D4 4770            bx               lr
+   84 000000D6         end
                        
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=.\objects\main.d -o.\objects\main.o -I.\RTE\_Target_1 -IC:\Keil_v5
@@ -144,11 +145,11 @@ Comment: reset unused
 ARM Macro Assembler    Page 1 Alphabetic symbol ordering
 Relocatable symbols
 
-end 000000D2
+end 000000D6
 
 Symbol: end
    Definitions
-      At line 83 in file main.s
+      At line 84 in file main.s
    Uses
       None
 Comment: end unused

@@ -73,6 +73,6 @@ namespace tree {
         if (tree == nullptr) return;
         LRT(LEFT(tree));
         LRT(RIGHT(tree));
-        cout << INFO(tree) << " ";
+        cout << tree->index << " ";
     }
 }
