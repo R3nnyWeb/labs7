@@ -1,0 +1,192 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;PR_5
+    2 00000000                 area             reset, data, readonly
+    3 00000000                 area             stack, noinit, readwrite
+    4 00000000                 space            0x400
+    5 00000400         stack_top
+    6 00000400                 area             program,code,readonly
+    7 00000000 00000000        dcd              stack_top
+    8 00000004 00000000        dcd              start
+    9 00000008                 entry
+   10 00000008         start
+   11 00000008 F000 F803       bl               pp1
+   12 0000000C         cykle                                ; bl pp2
+   13 0000000C F000 F828       bl               pp3
+   14 00000010 E7FC            b                cykle
+   15 00000012 4822    pp1     ldr              r0, =0x4002001c
+   16 00000014 4922            ldr              r1, =0x0aa40010
+   17 00000016 6001            str              r1, [r0]
+   18 00000018 4822            ldr              r0, =0x400a8000
+   19 0000001A F04F 01FF       mov              r1, #0xff
+   20 0000001E 6041            str              r1, [r0,#0x04]
+   21 00000020 60C1            str              r1, [r0,#0x0c]
+   22 00000022 F245 5155       movw             r1, #0x5555
+   23 00000026 6181            str              r1, [r0,#0x18]
+   24 00000028 491F            ldr              r1, =0x400c8000
+   25 0000002A F04F 0201       mov              r2, #0x01
+   26 0000002E 604A            str              r2, [r1, #0x04]
+   27 00000030 F04F 020A       mov              r2, #0x0a
+   28 00000034 60CA            str              r2, [r1, #0x0c]
+   29 00000036 F04F 0244       mov              r2, #0x44
+   30 0000003A 618A            str              r2, [r1, #0x18]
+   31 0000003C 4A1B            ldr              r2, =0x40090000
+   32 0000003E F04F 0308       mov              r3, #0x08
+   33 00000042 6013            str              r3, [r2]
+   34 00000044 4770            bx               lr
+   35 00000046         
+   36 00000046 F103 0301 
+                       pp2     add              r3, #1
+   37 0000004A F1A4 0401       sub              r4, #1
+   38 0000004E 680D            ldr              r5, [r1]
+   39 00000050 F015 0602       ands             r6, r5, #0x02
+   40 00000054 BF07 6093       streq            r3, [r2,#0x08]
+   41 00000058 6003            streq            r3, [r0]    ;41
+   42 0000005A 6094            strne            r4, [r2,#0x08]
+   43 0000005C 6004            strne            r4, [r0]
+   44 0000005E 4770            bx               lr
+   45 00000060 4F13    pp3     ldr              r7, =tab
+   46 00000062 F108 0802       add              r8, #0x02
+   47 00000066 F008 081F       and              r8, #0x1f
+   48 0000006A EB07 0908       add              r9, r7, r8
+   49 0000006E F8B9 A000       ldrh             r10, [r9]
+   50 00000072 F8C0 A000       str              r10, [r0]
+   51 00000076 F8C2 A008       str              r10, [r2,#0x08]
+   52 0000007A 4770            bx               lr
+   53 0000007C E8 03 66 
+              05 AC 06 
+              84 07    tab     dcw              1000,1382,1708,1924
+   54 00000084 D0 07 84 
+              07 AC 06 
+              66 05            dcw              2000,1924,1708,1382
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   55 0000008C E8 03 6A 
+              02 24 01 
+              4C 00            dcw              1000,618,292,76
+   56 00000094 00 00 4C 
+              00 24 01 
+              6A 02            dcw              0,76,292,618
+   57 0000009C                 end
+              4002001C 
+              0AA40010 
+              400A8000 
+              400C8000 
+              40090000 
+              00000000 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\objects\main.d -o.\objects\main.o -I.\RTE\_Target_1 -IC:\Keil_v5
+\ARM\PACK\Keil\MDR1986BExx\1.4\Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\inc 
+-IC:\Keil_v5\ARM\CMSIS\Include --predefine="__EVAL SETA 1" --predefine="__UVISI
+ON_VERSION SETA 526" --predefine="USE_MDR32F9Q2_Rev1 SETA 1" --list=.\listings\
+main.lst main.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+reset 00000000
+
+Symbol: reset
+   Definitions
+      At line 2 in file main.s
+   Uses
+      None
+Comment: reset unused
+1 symbol
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+stack 00000000
+
+Symbol: stack
+   Definitions
+      At line 3 in file main.s
+   Uses
+      None
+Comment: stack unused
+stack_top 00000400
+
+Symbol: stack_top
+   Definitions
+      At line 5 in file main.s
+   Uses
+      At line 7 in file main.s
+Comment: stack_top used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+cykle 0000000C
+
+Symbol: cykle
+   Definitions
+      At line 12 in file main.s
+   Uses
+      At line 14 in file main.s
+Comment: cykle used once
+pp1 00000012
+
+Symbol: pp1
+   Definitions
+      At line 15 in file main.s
+   Uses
+      At line 11 in file main.s
+Comment: pp1 used once
+pp2 00000046
+
+Symbol: pp2
+   Definitions
+      At line 36 in file main.s
+   Uses
+      None
+Comment: pp2 unused
+pp3 00000060
+
+Symbol: pp3
+   Definitions
+      At line 45 in file main.s
+   Uses
+      At line 13 in file main.s
+Comment: pp3 used once
+program 00000000
+
+Symbol: program
+   Definitions
+      At line 6 in file main.s
+   Uses
+      None
+Comment: program unused
+start 00000008
+
+Symbol: start
+   Definitions
+      At line 10 in file main.s
+   Uses
+      At line 8 in file main.s
+Comment: start used once
+tab 0000007C
+
+Symbol: tab
+   Definitions
+      At line 53 in file main.s
+   Uses
+      At line 45 in file main.s
+Comment: tab used once
+7 symbols
+345 symbols in table
