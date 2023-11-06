@@ -92,13 +92,13 @@ void LCDTestPrint(void)
 }
 
 void setPixel(uint8_t x, uint8_t y, uint8_t data){
-	int chip;
 	uint8_t chip = (x / 64) + 1;      // Определяем номер чипа на основе координаты x
   uint8_t page = y / 8;             // Определяем номер страницы на основе координаты y
   uint8_t address = x % 64;         // Определяем адрес (колонку) на основе координаты x
 	
 	SetPage(chip,page);
-	SetAdress(chip, adress);
+	SetAdress(chip, address);
+	ReadData(chip);
 	
 	uint8_t mask = 1 << (y % 8);
 	uint8_t cellData = ReadData(chip);
@@ -107,7 +107,8 @@ void setPixel(uint8_t x, uint8_t y, uint8_t data){
     } else {
         cellData &= ~mask;  // Сброс бита в 0
     }
-
+	SetPage(chip,page);
+	SetAdress(chip, address);
     // Записываем обновленное значение обратно в ячейку
     WriteData(chip, cellData);
 }
@@ -118,9 +119,10 @@ int main (void)		//точка входа в программу
 	PCLKinit();			//включние тактовых сигналов
 	LCDPins();			//инициализация выводов
 	LCDStart();			//запуск LCD
-	LCDTestPrint();	//вывод тестовых значений на экран
+//	LCDTestPrint();	//вывод тестовых значений на экран
+	for(int i = 0; i < 64; i++){setPixel(i,i,1);}
 	while(1)				//бесконечный цикл
 		{
-
+			
 		}
 }

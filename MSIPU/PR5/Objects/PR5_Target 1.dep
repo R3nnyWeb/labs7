@@ -1,0 +1,2 @@
+Dependencies for Project 'PR5', Target 'Target 1': (DO NOT MODIFY !)
+F (.\main.s)(0x6548E86B)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork -I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\Keil\MDR1986BExx\1.4\Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\inc-IC:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 526" --pd "USE_MDR32F9Q2_Rev1 SETA 1"--list .\listings\main.lst --xref -o .\objects\main.o --depend .\objects\main.d)

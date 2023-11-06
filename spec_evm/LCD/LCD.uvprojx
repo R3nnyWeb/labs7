@@ -134,11 +134,11 @@
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
             <Capability>1</Capability>
-            <DriverSelection>-1</DriverSelection>
+            <DriverSelection>4096</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -388,19 +388,14 @@
               <FilePath>.\LIBS\mlt_lcd.c</FilePath>
             </File>
             <File>
-              <FileName>main.c</FileName>
+              <FileName>main2_1.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\main.c</FilePath>
+              <FilePath>.\main2_1.c</FilePath>
             </File>
             <File>
-              <FileName>main3.c</FileName>
+              <FileName>lcdstring.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\main3.c</FilePath>
-            </File>
-            <File>
-              <FileName>main4.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\main4.c</FilePath>
+              <FilePath>.\LIBS\lcdstring.c</FilePath>
             </File>
           </Files>
         </Group>
