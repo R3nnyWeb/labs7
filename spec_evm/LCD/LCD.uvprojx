@@ -388,14 +388,14 @@
               <FilePath>.\LIBS\mlt_lcd.c</FilePath>
             </File>
             <File>
-              <FileName>main2_1.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\main2_1.c</FilePath>
-            </File>
-            <File>
               <FileName>lcdstring.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\LIBS\lcdstring.c</FilePath>
+            </File>
+            <File>
+              <FileName>main2_4.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\main2_4.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -107,11 +107,14 @@ int main (void)		//точка входа в программу
 	LcdScrollString (group, 2, 3, 8);
 	
 	char stroka[11];
-	sprintf(stroka, "$s %d","Бригада", 4);
-	PrintRight(stroka,11,7);
-
-	
-	
+	sprintf(stroka, "$s %d","Brigada", 4);
+	PrintRight(stroka,11,6);
+	char fio1[11];
+	sprintf(fio1, "$s","Vashkulatov");
+	PrintRight(fio1,11,7);
+	char fio2[6];
+	sprintf(fio2, "$s","Anohin");
+	PrintRight(fio2,6,8);
 
 	
 	while(1)				//бесконечный цикл
