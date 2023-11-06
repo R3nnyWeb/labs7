@@ -1,6 +1,17 @@
-#include "MDR32F9Qx_port.h"			//библиотека работы с портами
-#include "MDR32F9Qx_rst_clk.h"	//библиотека работы с модулем тактирования
-#include "mlt_lcd.h"						//библиотека работы с дисплеем
+#include "MDR32F9Qx_port.h"			//?????????? ?????? ? ???????
+#include "MDR32F9Qx_rst_clk.h"	//?????????? ?????? ? ??????? ????????????
+#include "mlt_lcd.h"						//?????????? ?????? ? ????????
+#include "font.h"
+#include "stdio.h"
+#include "lcdstring.h"
+
+uint8_t width = 16;
+uint8_t height = 8;
+
+void Delay(uint32_t wait)
+{
+	for (int i=0;i<wait;i++);
+}
 
 //структура инициализации порта
 PORT_InitTypeDef PortStruct;
@@ -71,58 +82,41 @@ void LCDStart(void)							//процедура запуска дисплея
 	LcdClearChip(2);							//очистка чипа 2
 }
 
-
-void LCDTestPrint(void)
-{
-	SetPage(1,2);					//установить 2 страницу 1-ого чипа
-	SetAdress(1,9);				//установить адрес - 9, для 1-ого чипа, (2 страницы)
-	WriteData (1,0x20);		//вывод на экран точки с положением 0x20 (по адресу 5), 2 страница, чип 1)
-	SetPage(2,3);					//установить 3 страницу 2-ого чипа
-	SetAdress(2,0);				//установить адрес - 0, для 2-ого чипа, (3 страницы)
-	for (int i=0;i<7;i++)	//перебор комбинаций от 0 до 7
-		{
-			WriteData(2,i);		//вывод на экран точки с положением i, адрес увеличивается на 1 после выполнения каждой команды
-		}
-	SetPage(2,4);					//установить 4 страницу 2-ого чипа
-	SetAdress(2,0);				//установить адрес - 0, для 2-ого чипа, (4 страницы)
-	for (int i=0;i<63;i++)	//перебор комбинаций от 0 до 63
-		{
-			WriteData(2,i);		//вывод на экран точки с положением i, адрес увеличивается на 1 после выполнения каждой команды
-		}
+void PrintRight(char *x, int size, int strnum){
+	char result[width];
+	for(int i = width - size; i < width; i++){
+		result[i] = x[i];
+	}
+	PrintString(result, strnum);
 }
-
-void setPixel(uint8_t x, uint8_t y, uint8_t data){
-	uint8_t chip = (x / 64) + 1;      // Определяем номер чипа на основе координаты x
-  uint8_t page = y / 8;             // Определяем номер страницы на основе координаты y
-  uint8_t address = x % 64;         // Определяем адрес (колонку) на основе координаты x
-	
-	SetPage(chip,page);
-	SetAdress(chip, address);
-	ReadData(chip);
-	
-	uint8_t mask = 1 << (y % 8);
-	uint8_t cellData = ReadData(chip);
-	if (data) {
-        cellData |= mask;  // Установка бита в 1
-    } else {
-        cellData &= ~mask;  // Сброс бита в 0
-    }
-	SetPage(chip,page);
-	SetAdress(chip, address);
-    // Записываем обновленное значение обратно в ячейку
-    WriteData(chip, cellData);
-}
-
-int main (void)		//точка входа в программу	
+int main (void)		//точка входа в программу
 {
 	CPUinit();			//настройка тактирования процессора
 	PCLKinit();			//включние тактовых сигналов
 	LCDPins();			//инициализация выводов
 	LCDStart();			//запуск LCD
-//	LCDTestPrint();	//вывод тестовых значений на экран
-	for(int i = 0; i < 64; i++){setPixel(i,i,1);}
+	LcdClearChip (1);
+	LcdClearChip (2);
+	LcdPutImage(icon_mil,0,0,1,1);
+	LcdPutChar (cyr_R, 11,0);
+	LcdPutChar (cyr_G, 12,0);
+	LcdPutChar (cyr_R, 13,0);
+	LcdPutChar (cyr_T, 14,0);
+	LcdPutChar (cyr_U, 15,0);
+	uint8_t *group[3] = {{dig_0},{dig_4},{dig_5}};
+	LcdScrollString (group, 2, 3, 8);
+	
+	char stroka[11];
+	sprintf(stroka, "$s %d","Бригада", 4);
+	PrintRight(stroka,11,7);
+
+	
+	
+
+	
 	while(1)				//бесконечный цикл
 		{
-			
+		
+
 		}
 }

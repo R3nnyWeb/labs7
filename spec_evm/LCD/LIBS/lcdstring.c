@@ -1,0 +1,146 @@
+#include "lcdstring.h"
+void PrintString (char* x, int strnum)
+{
+	uint8_t *symbol;
+	for (int i=0;i<16;i++)
+		{
+			switch (x[i])
+			{
+				case('0'): symbol=dig_0;break;
+				case('1'): symbol=dig_1;break;
+				case('2'): symbol=dig_2;break;
+				case('3'): symbol=dig_3;break;
+				case('4'): symbol=dig_4;break;
+				case('5'): symbol=dig_5;break;
+				case('6'): symbol=dig_6;break;
+				case('7'): symbol=dig_7;break;
+				case('8'): symbol=dig_8;break;
+				case('9'): symbol=dig_9;break;
+				
+				case('a'): symbol=lat_a;break;
+				case('b'): symbol=lat_b;break;
+				case('c'): symbol=lat_c;break;
+				case('d'): symbol=lat_d;break;
+				case('e'): symbol=lat_e;break;
+				case('f'): symbol=lat_f;break;
+				case('g'): symbol=lat_g;break;
+				case('h'): symbol=lat_h;break;
+				case('i'): symbol=lat_i;break;
+				case('j'): symbol=lat_j;break;
+				case('k'): symbol=lat_k;break;
+				case('l'): symbol=lat_l;break;
+				case('m'): symbol=lat_m;break;
+				case('n'): symbol=lat_n;break;
+				case('o'): symbol=lat_o;break;
+				case('p'): symbol=lat_p;break;
+				case('q'): symbol=lat_q;break;
+				case('r'): symbol=lat_r;break;
+				case('s'): symbol=lat_s;break;
+				case('t'): symbol=lat_t;break;
+				case('u'): symbol=lat_u;break;
+				case('v'): symbol=lat_v;break;
+				case('w'): symbol=lat_w;break;
+				case('x'): symbol=lat_x;break;
+				case('y'): symbol=lat_y;break;
+				case('z'): symbol=lat_z;break;
+				case('A'): symbol=lat_A;break;
+				case('B'): symbol=lat_B;break;
+				case('C'): symbol=lat_C;break;
+				case('D'): symbol=lat_D;break;
+				case('E'): symbol=lat_E;break;
+				case('F'): symbol=lat_F;break;
+				case('G'): symbol=lat_G;break;
+				case('H'): symbol=lat_H;break;
+				case('I'): symbol=lat_I;break;
+				case('J'): symbol=lat_J;break;
+				case('K'): symbol=lat_K;break;
+				case('L'): symbol=lat_L;break;
+				case('M'): symbol=lat_M;break;
+				case('N'): symbol=lat_N;break;
+				case('O'): symbol=lat_O;break;
+				case('P'): symbol=lat_P;break;
+				case('Q'): symbol=lat_Q;break;
+				case('R'): symbol=lat_R;break;
+				case('S'): symbol=lat_S;break;
+				case('T'): symbol=lat_T;break;
+				case('U'): symbol=lat_U;break;
+				case('V'): symbol=lat_V;break;
+				case('W'): symbol=lat_W;break;
+				case('X'): symbol=lat_X;break;
+				case('Y'): symbol=lat_Y;break;
+				case('Z'): symbol=lat_Z;break;
+				
+//				case('а'): symbol=dig_0;
+//				case('б'): symbol=dig_0;
+//				case('в'): symbol=dig_0;
+//				case('г'): symbol=dig_0;
+//				case('д'): symbol=dig_0;
+//				case('е'): symbol=dig_0;
+//				case('ё'): symbol=dig_0;
+//				case('ж'): symbol=dig_0;
+//				case('з'): symbol=dig_0;
+//				case('и'): symbol=dig_0;
+//				case('й'): symbol=dig_0;
+//				case('к'): symbol=dig_0;
+//				case('л'): symbol=dig_0;
+//				case('м'): symbol=dig_0;
+//				case('н'): symbol=dig_0;
+//				case('о'): symbol=dig_0;
+//				case('п'): symbol=dig_0;
+//				case('р'): symbol=dig_0;
+//				case('с'): symbol=dig_0;
+//				case('т'): symbol=dig_0;
+//				case('у'): symbol=dig_0;
+//				case('ф'): symbol=dig_0;
+//				case('х'): symbol=dig_0;
+//				case('ц'): symbol=dig_0;
+//				case('ч'): symbol=dig_0;
+//				case('ш'): symbol=dig_0;
+//				case('щ'): symbol=dig_0;
+//				case('ъ'): symbol=dig_0;
+//				case('ы'): symbol=dig_0;
+//				case('ь'): symbol=dig_0;
+//				case('э'): symbol=dig_0;
+//				case('ю'): symbol=dig_0;
+//				case('я'): symbol=dig_0;
+//				case('А'): symbol=dig_0;
+//				case('Б'): symbol=dig_0;
+//				case('В'): symbol=dig_0;
+//				case('Г'): symbol=dig_0;
+//				case('Д'): symbol=dig_0;
+//				case('Е'): symbol=dig_0;
+//				case('Ё'): symbol=dig_0;
+//				case('Ж'): symbol=dig_0;
+//				case('З'): symbol=dig_0;
+//				case('И'): symbol=dig_0;
+//				case('Й'): symbol=dig_0;
+//				case('К'): symbol=dig_0;
+//				case('Л'): symbol=dig_0;
+//				case('М'): symbol=dig_0;
+//				case('Н'): symbol=dig_0;
+//				case('О'): symbol=dig_0;
+//				case('П'): symbol=dig_0;
+//				case('Р'): symbol=dig_0;
+//				case('С'): symbol=dig_0;
+//				case('Т'): symbol=dig_0;
+//				case('У'): symbol=dig_0;
+//				case('Ф'): symbol=dig_0;
+//				case('Х'): symbol=dig_0;
+//				case('Ц'): symbol=dig_0;
+//				case('Ч'): symbol=dig_0;
+//				case('Ш'): symbol=dig_0;
+//				case('Щ'): symbol=dig_0;
+//				case('Ъ'): symbol=dig_0;
+//				case('Ы'): symbol=dig_0;
+//				case('Ь'): symbol=dig_0;
+//				case('Э'): symbol=dig_0;
+//				case('Ю'): symbol=dig_0;
+//				case('Я'): symbol=dig_0;
+				
+				case ('.'):symbol=sym_pt;break;
+				case (','):symbol=sym_pt;break;
+				default:symbol=sym_sp;
+			}	
+		LcdPutChar (symbol, i, strnum);			
+		}
+}

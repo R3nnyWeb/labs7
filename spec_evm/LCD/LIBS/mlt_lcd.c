@@ -246,6 +246,28 @@ uint8_t s1;
 	}
 }
 
+void setPixel(uint8_t x, uint8_t y, uint8_t data){
+	uint8_t chip = (x / 64) + 1;      // Определяем номер чипа на основе координаты x
+  uint8_t page = y / 8;             // Определяем номер страницы на основе координаты y
+  uint8_t address = x % 64;         // Определяем адрес (колонку) на основе координаты x
+	
+	SetPage(chip,page);
+	SetAdress(chip, address);
+	ReadData(chip);
+	
+	uint8_t mask = 1 << (y % 8);
+	uint8_t cellData = ReadData(chip);
+	if (data) {
+        cellData |= mask;  // Установка бита в 1
+    } else {
+        cellData &= ~mask;  // Сброс бита в 0
+    }
+	SetPage(chip,page);
+	SetAdress(chip, address);
+    // Записываем обновленное значение обратно в ячейку
+    WriteData(chip, cellData);
+}
+
 void LcdPutString (uint8_t** array, int Ypos)
 {
 int i,j;
