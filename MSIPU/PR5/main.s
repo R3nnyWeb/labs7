@@ -9,10 +9,12 @@ stack_top
 	entry
 start
 ;	bl pp1
-;cykle; bl pp2
+cykle ;bl pp5
 	; bl pp3
 	;b cykle
-	bl pp4
+	;bl pp4
+	bl pp5
+	b cykle
 pp1 ldr r0, =0x4002001c ;Выбираем базовый адрес MDR_RST_CLK->PER_CLOCK(Тактирование)
 	ldr r1, =0x0aa40010 ;RST_CLK, BKP, PORTE, PORTC, PORTA, ADC
 	str r1, [r0]
@@ -70,8 +72,20 @@ m1  str r2, [r0] ;Запись в А
 	eoreq r3, 0x01 ;Инвертация направления
 	b m1
 	bx lr
+pp5 ldr r7, =tab2 ;0x0800007C ;Адрес таблицы
+	add r8, #0x02 ;Смещение для каждого нового
+	and r8, #0x1f ;Чтобы не уйти за пределы таблицы 32 байта
+	add r9, r7, r8 ;Адрес чтения
+	ldrh r10, [r9] ;Чтение
+	str r10, [r0] ;port A rxtx
+	str r10, [r2,#0x08] ;DAC2 data ЦАП
+	bx lr ;период и точки те же самые
 tab dcw 1000,1382,1708,1924
 	dcw 2000,1924,1708,1382
 	dcw 1000,618,292,76
 	dcw 0,76,292,618
+tab2 dcw 1000,1038,1146,1308
+	dcw 1500,1691,1853,1961
+	dcw 2000,1961,1853,1691
+	dcw 1500,1308,1146,1038
 	end
