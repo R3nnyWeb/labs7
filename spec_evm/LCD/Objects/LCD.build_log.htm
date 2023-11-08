@@ -5,7 +5,7 @@
 <h2>Tool Versions:</h2>
 IDE-Version: µVision V5.26.2.0
 Copyright (C) 2018 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: Nikita Vashkulatov, rsreu, LIC=----
+License Information: Nikita Vashkulatov, -, LIC=----
  
 Tool Versions:
 Toolchain:       MDK-Lite  Version: 5.26.2.0
@@ -21,8 +21,8 @@ Target DLL:      Segger\JL2CM3.dll V2.99.31.0
 Dialog DLL:      TCM.DLL V1.36.1.0
  
 <h2>Project:</h2>
-E:\MyDoc\Projects\labs7\spec_evm\LCD\LCD.uvprojx
-Project File Date:  11/06/2023
+C:\Users\R3nny\Desktop\labs7\spec_evm\LCD\LCD.uvprojx
+Project File Date:  11/08/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
@@ -30,18 +30,12 @@ Build target 'Target 1'
 compiling main2_4.c...
 main2_4.c(15): warning:  #65-D: expected a ";"
   };
-main2_4.c(170): warning:  #188-D: enumerated type mixed with another type
+main2_4.c(182): warning:  #188-D: enumerated type mixed with another type
   	PORT_WriteBit(MDR_PORTA, pin, data ^ 0x1);
-main2_4.c(188): warning:  #225-D: the format string ends before this argument
-  	sprintf(stroka, "$s %d","Brigada", 4);
-main2_4.c(191): warning:  #225-D: the format string ends before this argument
-  	sprintf(fio1, "$s","Vashkulatov");
-main2_4.c(194): warning:  #225-D: the format string ends before this argument
-  	sprintf(fio2, "$s","Anohin");
-main2_4.c: 5 warnings, 0 errors
+main2_4.c: 2 warnings, 0 errors
 linking...
-Program Size: Code=5760 RO-data=224 RW-data=2204 ZI-data=1668  
-".\Objects\LCD.axf" - 0 Error(s), 5 Warning(s).
+Program Size: Code=5484 RO-data=324 RW-data=2204 ZI-data=1684  
+".\Objects\LCD.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -74,9 +68,9 @@ Package Vendor: Keil
 
    * Component: Keil::Device:Startup_MDR1986BE9x:1.3.1
       Include file:  Libraries\CMSIS\CM3\CoreSupport\core_cm3.h
+      Include file:  Config\MDR32F9Qx_config.h
       Source file:   Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\startup\arm\startup_MDR32F9Qx.s
       Source file:   Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\startup\arm\system_MDR32F9Qx.c
-      Include file:  Config\MDR32F9Qx_config.h
       Include file:  Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\startup\arm\system_MDR32F9Qx.h
 
    * Component: Keil::Drivers:PORT:1.3.1
@@ -86,7 +80,7 @@ Package Vendor: Keil
    * Component: Keil::Drivers:RST_CLK:1.3.1
       Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_rst_clk.h
       Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_rst_clk.c
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

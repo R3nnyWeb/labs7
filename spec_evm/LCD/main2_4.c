@@ -24,7 +24,8 @@ void Delay(uint32_t wait)
 
 //????????? ????????????? ?????
 PORT_InitTypeDef PortStruct;
-PORT_InitTypeDef PortInit;
+PORT_InitTypeDef PortInitOutput;
+PORT_InitTypeDef PortInitBtn;
 
 void LCDPins (void) //????????? ????????????? ??????? ?? ??? ?????? ? LCD
 { //??? ????? ???????? ? ?????? PORT ? ????????? ???????
@@ -72,6 +73,7 @@ void PCLKinit(void)														//????????? ???????????? ??????
 	RST_CLK_PCLKcmd(RST_CLK_PCLK_PORTB,ENABLE);	//????????? ???????????? PORTB
 	RST_CLK_PCLKcmd(RST_CLK_PCLK_PORTC,ENABLE);	//????????? ???????????? PORTC
 	RST_CLK_PCLKcmd(RST_CLK_PCLK_PORTF,ENABLE);	//????????? ???????????? PORTF
+	RST_CLK_PCLKcmd(RST_CLK_PCLK_PORTE,ENABLE);
 }
 
 void LCDStart(void)							//????????? ??????? ???????
@@ -103,45 +105,50 @@ void PrintRight(char *x, int size, int strnum){
 
 
 void ButtonsPinCfg(void){
-	PORT_StructInit(&PortInit);
-	PortInit.PORT_Pin = (PORT_Pin_5);
+	PORT_StructInit(&PortInitBtn);
+	PortInitBtn.PORT_Pin = PORT_Pin_5;
 	
-	PortInit.PORT_OE = PORT_OE_IN;
-	PortInit.PORT_FUNC = PORT_FUNC_PORT;//???? ? ?????? ??????????? ???????
-	PortInit.PORT_MODE = PORT_MODE_DIGITAL;//???????? ????? ?????
-	PortInit.PORT_SPEED = PORT_SPEED_SLOW;//???????? ???????? ??????? ??
-	PortInit.PORT_PULL_DOWN = PORT_PULL_DOWN_OFF;
-	PortInit.PORT_PULL_UP = PORT_PULL_UP_ON;
-	PortInit.PORT_GFEN = PORT_GFEN_ON;
-	PORT_Init(MDR_PORTB, &PortInit);
-	PortInit.PORT_Pin = (PORT_Pin_1);
-	PORT_Init(MDR_PORTE, &PortInit);
+	PortInitBtn.PORT_OE = PORT_OE_IN;
+	PortInitBtn.PORT_FUNC = PORT_FUNC_PORT;//???? ? ?????? ??????????? ???????
+	PortInitBtn.PORT_MODE = PORT_MODE_DIGITAL;//???????? ????? ?????
+	PortInitBtn.PORT_SPEED = PORT_SPEED_SLOW;//???????? ???????? ??????? ??
+	PortInitBtn.PORT_PULL_DOWN = PORT_PULL_DOWN_OFF;
+	PortInitBtn.PORT_PULL_UP = PORT_PULL_UP_ON;
+	PortInitBtn.PORT_GFEN = PORT_GFEN_ON;
+	PORT_Init(MDR_PORTB, &PortInitBtn);
+	PortInitBtn.PORT_Pin = PORT_Pin_1;
+	PORT_Init(MDR_PORTE, &PortInitBtn);
+	PortInitBtn.PORT_Pin = PORT_Pin_2;
+	PORT_Init(MDR_PORTC, &PortInitBtn);
 }
 
 int isUpPressed(){
-	return PORT_ReadInputDataBit(MDR_PORTB, PORT_Pin_5);
+	return PORT_ReadInputDataBit(MDR_PORTB, PORT_Pin_5) == 0;
 }
 int isDownPressed(){
-	return PORT_ReadInputDataBit(MDR_PORTE, PORT_Pin_1);
+	return PORT_ReadInputDataBit(MDR_PORTE, PORT_Pin_1) == 0;
+}
+int isSelectPressed(){
+	return PORT_ReadInputDataBit(MDR_PORTC, PORT_Pin_2) == 0;
 }
 
 void changeTask(){
 	if(selectedMenuItem == 0){
-		LcdPutChar(sym_sp,6,2);
+		LcdPutChar(sym_sp,7,2);
 		LcdPutChar(cursor,7,1);
 	} else {
-		LcdPutChar(sym_sp,6,1);
+		LcdPutChar(sym_sp,7,1);
 		LcdPutChar(cursor,7,2);
 	}
 }
 
 void SetUpOutput(){
-		PortStruct.PORT_Pin = PORT_Pin_5 | PORT_Pin_6;
-	PortStruct.PORT_OE = PORT_OE_OUT;
-	PortStruct.PORT_FUNC = PORT_FUNC_PORT;
-	PortStruct.PORT_SPEED = PORT_SPEED_SLOW;
-	PortStruct.PORT_MODE = PORT_MODE_DIGITAL;
-	PORT_Init(MDR_PORTA,&PortStruct);
+		PortInitOutput.PORT_Pin = PORT_Pin_6 | PORT_Pin_7;
+	PortInitOutput.PORT_OE = PORT_OE_OUT;
+	PortInitOutput.PORT_FUNC = PORT_FUNC_PORT;
+	PortInitOutput.PORT_SPEED = PORT_SPEED_SLOW;
+	PortInitOutput.PORT_MODE = PORT_MODE_DIGITAL;
+	PORT_Init(MDR_PORTA,&PortInitOutput);
 }
 
 void pressUp(){
@@ -156,21 +163,26 @@ void pressDown(){
 
 void executeTask(){
 	uint32_t pin;
-	if(selectedMenuItem == 1)
+	if(selectedMenuItem == 0)
 		pin = PORT_Pin_6;
 	else pin = PORT_Pin_7;
 	uint8_t data = PORT_ReadInputDataBit(MDR_PORTA, pin);
 	
-	int str = 2 + selectedMenuItem;
+	int str = 3 + selectedMenuItem;
 	
 	LcdPutChar (lat_L, 0,str);
 	LcdPutChar (lat_D, 1,str);
-	LcdPutChar (dig_1, 2,str);
-	Delay(1000 * selectedMenuItem);
+	if(selectedMenuItem == 0){
+		LcdPutChar (dig_1, 2,str);
+	} else {
+	LcdPutChar (dig_2, 2,str);
+	}
+
+	Delay(8000000 * (selectedMenuItem + 1));
 	PORT_WriteBit(MDR_PORTA, pin, data ^ 0x1);
 	LcdPutChar (lat_D, 0,str);
 	LcdPutChar (lat_N, 1,str);
-	LcdPutChar (dig_1, 2,str);
+
 }
 
 int main (void)		//????? ????? ? ?????????
@@ -184,19 +196,18 @@ int main (void)		//????? ????? ? ?????????
 	ButtonsPinCfg();
 	SetUpOutput();
 	
-	char stroka[11];
-	sprintf(stroka, "$s %d","Brigada", 4);
-	PrintRight(stroka,11,6);
-	char fio1[11];
-	sprintf(fio1, "$s","Vashkulatov");
-	PrintRight(fio1,11,7);
-	char fio2[6];
-	sprintf(fio2, "$s","Anohin");
-	PrintRight(fio2,6,8);
+	uint8_t *brigada[9] = {{cyr_B},{cyr_r} ,{cyr_i},{cyr_g}, {cyr_a},{cyr_d},{cyr_a},{sym_sp}, {dig_4}};
+	LcdScrollString (brigada, 5, 9, 8);
+	
+	uint8_t *fio1[10] = {{cyr_V},{cyr_a} ,{cyr_sh},{cyr_k}, {cyr_u},{cyr_l},{cyr_a},{cyr_t}, {cyr_o}, {cyr_v}};
+	LcdScrollString (fio1, 6, 9, 9);
+	
+	uint8_t *fio2[6] = {{cyr_A},{cyr_n} ,{cyr_o},{cyr_kh}, {cyr_i},{cyr_n}};
+	LcdScrollString (fio2, 7, 9, 5);
 
 	char model[16];
 	sprintf(model, "   %s   ", "MK1986BE92");
-	PrintString(model,1);
+	PrintString(model,0);
 	
 	for(int i = 1; i <= 2; i++){
 		LcdPutChar (cyr_Z, 0,i);
@@ -212,22 +223,31 @@ int main (void)		//????? ????? ? ?????????
 	
 	while(1)				//??????????? ????
 		{
+			if(isSelectPressed()){
+				if(pressedButtons.SELECT == 0){
+				executeTask();
+					pressedButtons.SELECT = 1;
+				}
+			} else {
+				pressedButtons.SELECT = 0;
+			}	
 			if(isDownPressed()){
-			if(pressedButtons.DOWN == 0){
-				pressDown();
-				pressedButtons.DOWN = 1;
-			}
-		} else {
-			pressedButtons.DOWN = 0;
-		}	
-		if(isUpPressed()){
-			if(pressedButtons.UP == 0){
-				pressUp();
-				pressedButtons.UP = 1;
-			}
-		} else {
-			pressedButtons.UP = 0;
-		}	
+				if(pressedButtons.DOWN == 0){
+					pressDown();
+					pressedButtons.DOWN = 1;
+				}
+			} else {
+				pressedButtons.DOWN = 0;
+			}	
+			
+			if(isUpPressed()){
+				if(pressedButtons.UP == 0){
+					pressUp();
+					pressedButtons.UP = 1;
+				}
+			} else {
+				pressedButtons.UP = 0;
+			}	
 
 		}
 }
