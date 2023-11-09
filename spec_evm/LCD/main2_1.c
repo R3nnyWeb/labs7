@@ -105,17 +105,27 @@ int main (void)		//точка входа в программу
 	LcdPutChar (cyr_U, 15,0);
 	uint8_t *group[3] = {{dig_0},{dig_4},{dig_5}};
 	LcdScrollString (group, 2, 3, 8);
+	/*	char stroka[11];
+	sprintf(stroka, "%s %d","Brigada", 4);
+	PrintRight(stroka,11,6);*/
 	
-	char stroka[11];
-	sprintf(stroka, "$s %d","Brigada", 4);
-	PrintRight(stroka,11,6);
-	char fio1[11];
-	sprintf(fio1, "$s","Vashkulatov");
+	uint8_t *brigada[9] = {{cyr_B},{cyr_r} ,{cyr_i},{cyr_g}, {cyr_a},{cyr_d},{cyr_a},{sym_sp}, {dig_4}};
+	LcdScrollString (brigada, 5, 9, 8);
+	
+	uint8_t *fio1[10] = {{cyr_V},{cyr_a} ,{cyr_sh},{cyr_k}, {cyr_u},{cyr_l},{cyr_a},{cyr_t}, {cyr_o}, {cyr_v}};
+	LcdScrollString (fio1, 6, 9, 9);
+	
+	uint8_t *fio2[6] = {{cyr_A},{cyr_n} ,{cyr_o},{cyr_kh}, {cyr_i},{cyr_n}};
+	LcdScrollString (fio2, 7, 9, 5);
+	/*char fio1[11];
+	sprintf(fio1, "%s","Vashkulatov");
 	PrintRight(fio1,11,7);
 	char fio2[6];
-	sprintf(fio2, "$s","Anohin");
+	sprintf(fio2, "%s","Anohin");
 	PrintRight(fio2,6,8);
-
+ */
+	
+	
 	
 	while(1)				//бесконечный цикл
 		{
