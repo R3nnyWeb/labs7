@@ -10,10 +10,10 @@ stack_top
 start
 ;	bl pp1
 cykle ;bl pp5
-	; bl pp3
+	;bl pp3
 	;b cykle
-	;bl pp4
-	bl pp5
+	bl pp4
+	;bl pp5
 	b cykle
 pp1 ldr r0, =0x4002001c ;Выбираем базовый адрес MDR_RST_CLK->PER_CLOCK(Тактирование)
 	ldr r1, =0x0aa40010 ;RST_CLK, BKP, PORTE, PORTC, PORTA, ADC
