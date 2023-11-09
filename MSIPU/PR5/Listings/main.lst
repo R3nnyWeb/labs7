@@ -16,10 +16,10 @@ ARM Macro Assembler    Page 1
    10 00000008         start
    11 00000008         ; bl pp1
    12 00000008         cykle                                ;bl pp5
-   13 00000008         ; bl pp3
+   13 00000008         ;bl pp3
    14 00000008         ;b cykle
-   15 00000008         ;bl pp4
-   16 00000008 F000 F84E       bl               pp5
+   15 00000008 F000 F836       bl               pp4
+   16 0000000C         ;bl pp5
    17 0000000C E7FC            b                cykle
    18 0000000E 483D    pp1     ldr              r0, =0x4002001c ;Выбирае
                                                             м базовый �
@@ -162,7 +162,9 @@ ARM Macro Assembler    Page 3
    80 000000BA F8C0 A000       str              r10, [r0]   ;port A rxtx
    81 000000BE F8C2 A008       str              r10, [r2,#0x08] 
                                                             ;DAC2 data ЦАП
-   82 000000C2 4770            bx               lr
+   82 000000C2 4770            bx               lr          ;период и т
+                                                            очки те же 
+                                                            самые
    83 000000C4 E8 03 66 
               05 AC 06 
               84 07    tab     dcw              1000,1382,1708,1924
@@ -191,14 +193,14 @@ ARM Macro Assembler    Page 3
               4002001C 
               0AA40010 
               400A8000 
-              400C8000 
-              40090000 
 
 
 
 ARM Macro Assembler    Page 4 
 
 
+              400C8000 
+              40090000 
               00000000 
               00200010 
               00000000 
@@ -298,16 +300,16 @@ Symbol: pp4
    Definitions
       At line 56 in file main.s
    Uses
-      None
-Comment: pp4 unused
+      At line 15 in file main.s
+Comment: pp4 used once
 pp5 000000A8
 
 Symbol: pp5
    Definitions
       At line 75 in file main.s
    Uses
-      At line 16 in file main.s
-Comment: pp5 used once
+      None
+Comment: pp5 unused
 program 00000000
 
 Symbol: program
