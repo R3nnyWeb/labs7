@@ -10,16 +10,6 @@ public class Main {
         array[j] = temp;
     }
 
-    public static void bubbleSort(int[] array) {
-        int n = array.length;
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
-                if (array[j] > array[j + 1]) {
-                    swap(array, j, j + 1);
-                }
-            }
-        }
-    }
 
     public static void selectSort(int[] array) {
         int min;
@@ -88,30 +78,30 @@ public class Main {
         return (double) res.toNanos() / 1000000.0;
     }
 
-    private static void printSortTimes(int[] arr) {
+    private static void printSortTimes(int[] arr, int n) {
         double sum = 0;
         for (int i = 0; i < 10; i++) {
-            sum += measureTimeMillis(Main::selectSort, Arrays.copyOf(arr, arr.length));
+            sum += measureTimeMillis(Main::selectSort, Arrays.copyOf(arr, n));
         }
         System.out.print(sum / 10 + "\t");
         sum = 0;
         for (int i = 0; i < 10; i++) {
-            sum += measureTimeMillis(Main::insertionSort, Arrays.copyOf(arr, arr.length));
+            sum += measureTimeMillis(Main::insertionSort, Arrays.copyOf(arr, n));
         }
         System.out.print(sum / 10 + "\t");
         sum = 0;
         for (int i = 0; i < 10; i++) {
-            sum += measureTimeMillis(Main::mergeSort, Arrays.copyOf(arr, arr.length));
+            sum += measureTimeMillis(Main::mergeSort, Arrays.copyOf(arr, n));
         }
         System.out.print(sum / 10 + "\t");
         System.out.println();
     }
 
     public static void main(String[] args) {
+        int[] arr = ArrayCreator.createArray(35000, -100000, 100000);
         for (int i = 5000; i <= 35000; i += 1000) {
             System.out.println("Размер = " + i);
-            int[] arr = ArrayCreator.createArray(i, -100000, 100000);
-            printSortTimes(arr);
+            printSortTimes(arr, i);
         }
 
     }
