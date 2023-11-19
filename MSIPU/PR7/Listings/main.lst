@@ -1,0 +1,231 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 area             stack, noinit, readwrite
+    2 00000000                 space            0x400
+    3 00000400         stack_top
+    4 00000400                 area             reset, data, readonly
+    5 00000000 00000000        dcd              stack_top
+    6 00000004 00000000        dcd              start
+    7 00000008                 area             program, code, readonly
+    8 00000000                 entry
+    9 00000000         start
+   10 00000000 4829            ldr              r0, = func4 ; base func
+   11 00000002 F04F 0100       mov              r1, #0      ; index n
+   12 00000006 4A29            ldr              r2, = gs    ;base gs
+   13 00000008 F04F 5600       mov              r6, #0x20000000 ; base out
+   14 0000000C F04F 0400       mov              r4, #0      ;faza fi
+   15 00000010 F04F 0501       mov              r5, #1      ;k-num garmoniciki
+   16 00000014 4623    k       mov              r3, r4      ;m = fi
+   17 00000016 F04F 0900       mov              r9, #0
+   18 0000001A F04F 0A00       mov              r10, #0
+   19 0000001E F04F 0B00       mov              r11, #0     ;accums
+   20 00000022 5647    m       ldrsb            r7, [r0, r1] ;func(n)
+   21 00000024 F912 8003       ldrsb            r8, [r2, r3] ;gs(m)
+   22 00000028 FB87 A908       smull            r10, r9, r7, r8
+   23 0000002C 44D3            add              r11, r10
+   24 0000002E 442B            add              r3, r5      ;m = m+k
+   25 00000030 F003 030F       and              r3, #0x0f
+   26 00000034 F101 0101       add              r1, #1
+   27 00000038 F011 010F       ands             r1, #0x0f
+   28 0000003C         ;cmps r12, 0x00
+   29 0000003C D1F1            bne              m
+   30 0000003E EA4F 2BAB       asr              r11, #10
+   31 00000042 F846 BB04       str              r11, [r6], #4
+   32 00000046 F094 0404       eors             r4, #0x4
+   33 0000004A D1E3            bne              k
+   34 0000004C F105 0501       add              r5, #1
+   35 00000050 2D05            cmps             r5, #5
+   36 00000052 D1DF            bne              k
+   37 00000054 E7FE    bc      b                bc
+   38 00000056 00 31 5B 
+              76       gs      dcb              0,49,91,118
+   39 0000005A 7F 76 51 
+              31               dcb              127,118,81,49
+   40 0000005E 00 CF A5 
+              8A               dcb              0,-49,-91,-118
+   41 00000062 81 8A AF 
+              CF               dcb              -127,-118,-81,-49
+   42 00000066 00 26 47 
+              5C       func1   dcb              0,38,71,92
+   43 0000006A 64 5C 47 
+              26               dcb              100,92,71,38
+   44 0000006E 00 DA B9 
+              A4               dcb              0,-38,-71,-92
+   45 00000072 9C A4 B9 
+              DA               dcb              -100,-92,-71,-38
+   46 00000076 64 5C 47 
+              26       func2   dcb              100,92,71,38
+   47 0000007A 00 DA B9 
+              A4               dcb              0,-38,-71,-92
+   48 0000007E 9C A4 B9 
+              DA               dcb              -100,-92,-71,-38
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   49 00000082 00 26 47 
+              5C               dcb              0,38,71,92
+   50 00000086 00 47 64 
+              47       func3   dcb              0,71,100,71
+   51 0000008A 00 B9 9C 
+              B9               dcb              0,-71,-100,-71
+   52 0000008E 00 47 64 
+              47               dcb              0,71,100,71
+   53 00000092 00 B9 9C 
+              B9               dcb              0,-71,-100,-71
+   54 00000096 0A 0A 0A 
+              0A       func4   dcb              10,10,10,10
+   55 0000009A 0A 0A 0A 
+              0A               dcb              10,10,10,10
+   56 0000009E F6 F6 F6 
+              F6               dcb              -10,-10,-10,-10
+   57 000000A2 F6 F6 F6 
+              F6               dcb              -10,-10,-10,-10
+   58 000000A6                 END
+              00 00 00000000 
+              00000000 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\objects\main.d -o.\objects\main.o -I.\RTE\_Target_1 -IC:\Keil_v5
+\ARM\PACK\Keil\MDR1986BExx\1.4\Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\inc 
+-IC:\Keil_v5\ARM\CMSIS\Include --predefine="__EVAL SETA 1" --predefine="__UVISI
+ON_VERSION SETA 526" --predefine="USE_MDR32F9Q2_Rev1 SETA 1" --list=.\listings\
+main.lst main.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+stack 00000000
+
+Symbol: stack
+   Definitions
+      At line 1 in file main.s
+   Uses
+      None
+Comment: stack unused
+stack_top 00000400
+
+Symbol: stack_top
+   Definitions
+      At line 3 in file main.s
+   Uses
+      At line 5 in file main.s
+Comment: stack_top used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+reset 00000000
+
+Symbol: reset
+   Definitions
+      At line 4 in file main.s
+   Uses
+      None
+Comment: reset unused
+1 symbol
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+bc 00000054
+
+Symbol: bc
+   Definitions
+      At line 37 in file main.s
+   Uses
+      At line 37 in file main.s
+Comment: bc used once
+func1 00000066
+
+Symbol: func1
+   Definitions
+      At line 42 in file main.s
+   Uses
+      None
+Comment: func1 unused
+func2 00000076
+
+Symbol: func2
+   Definitions
+      At line 46 in file main.s
+   Uses
+      None
+Comment: func2 unused
+func3 00000086
+
+Symbol: func3
+   Definitions
+      At line 50 in file main.s
+   Uses
+      None
+Comment: func3 unused
+func4 00000096
+
+Symbol: func4
+   Definitions
+      At line 54 in file main.s
+   Uses
+      At line 10 in file main.s
+Comment: func4 used once
+gs 00000056
+
+Symbol: gs
+   Definitions
+      At line 38 in file main.s
+   Uses
+      At line 12 in file main.s
+Comment: gs used once
+k 00000014
+
+Symbol: k
+   Definitions
+      At line 16 in file main.s
+   Uses
+      At line 33 in file main.s
+      At line 36 in file main.s
+
+m 00000022
+
+
+
+
+ARM Macro Assembler    Page 2 Alphabetic symbol ordering
+Relocatable symbols
+
+Symbol: m
+   Definitions
+      At line 20 in file main.s
+   Uses
+      At line 29 in file main.s
+Comment: m used once
+program 00000000
+
+Symbol: program
+   Definitions
+      At line 7 in file main.s
+   Uses
+      None
+Comment: program unused
+start 00000000
+
+Symbol: start
+   Definitions
+      At line 9 in file main.s
+   Uses
+      At line 6 in file main.s
+Comment: start used once
+10 symbols
+348 symbols in table
