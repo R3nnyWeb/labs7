@@ -80,20 +80,23 @@ public class Main {
 
     private static void printSortTimes(int[] arr, int n) {
         double sum = 0;
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             sum += measureTimeMillis(Main::selectSort, Arrays.copyOf(arr, n));
         }
-        System.out.print(sum / 10 + "\t");
+        System.out.print(sum / 100 + "\t");
+        System.gc();
         sum = 0;
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             sum += measureTimeMillis(Main::insertionSort, Arrays.copyOf(arr, n));
         }
-        System.out.print(sum / 10 + "\t");
+        System.out.print(sum / 100 + "\t");
+        System.gc();
         sum = 0;
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             sum += measureTimeMillis(Main::mergeSort, Arrays.copyOf(arr, n));
         }
-        System.out.print(sum / 10 + "\t");
+        System.out.print(sum / 100 + "\t");
+        System.gc();
         System.out.println();
     }
 
