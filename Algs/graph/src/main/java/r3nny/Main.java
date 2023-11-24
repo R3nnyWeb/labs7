@@ -6,7 +6,7 @@ import java.util.Arrays;
 class Queue {
     int size;
     int top = 0;
-    int arr[];
+    int[] arr;
 
     public Queue(int size) {
         this.size = size;
