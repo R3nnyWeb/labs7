@@ -8,12 +8,12 @@ stack_top
 	dcd start
 	entry
 start
-;	bl pp1
+	bl pp1
 ;	bl pp2
- 	bl pp3
+; 	bl pp3
 m	b m
 pp1
-	ldr r0, = func5 ;baza X(k)
+	ldr r0, = func3 ;baza X(k)
 	mov r1, #0 ;index l
 	mov r2, #0x20000000 ;baza Y(n)
 	mov r3, #0 ; index n

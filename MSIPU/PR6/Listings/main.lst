@@ -14,12 +14,12 @@ ARM Macro Assembler    Page 1
     8 00000004 00000000        dcd              start
     9 00000008                 entry
    10 00000008         start
-   11 00000008         ; bl pp1
-   12 00000008         ; bl pp2
-   13 00000008 F000 F83D       bl               pp3
+   11 00000008 F000 F801       bl               pp1
+   12 0000000C         ; bl pp2
+   13 0000000C         ;  bl pp3
    14 0000000C E7FE    m       b                m
    15 0000000E         pp1
-   16 0000000E 4844            ldr              r0, = func5 ;baza X(k)
+   16 0000000E 4844            ldr              r0, = func3 ;baza X(k)
    17 00000010 F04F 0100       mov              r1, #0      ;index l
    18 00000014 F04F 5200       mov              r2, #0x20000000 ;baza Y(n)
    19 00000018 F04F 0300       mov              r3, #0      ; index n
@@ -38,7 +38,7 @@ ARM Macro Assembler    Page 1
    32 00000042 D1ED            bne              m1
    33 00000044 4770            bx               lr
    34 00000046         pp2
-   35 00000046 4836            ldr              r0, =func5  ; baza X(k)
+   35 00000046 4837            ldr              r0, =func5  ; baza X(k)
    36 00000048 F04F 0100       mov              r1, #0      ;index k
    37 0000004C 4A36            ldr              r2, = 0x20000020 ;baza Y(n)
    38 0000004E F04F 0300       mov              r3, #0      ;index n
@@ -59,7 +59,7 @@ ARM Macro Assembler    Page 1
    53 00000080 2B00            cmp              r3, #0x00
    54 00000082 D1EA            bne              m2
    55 00000084 4770            bx               lr
-   56 00000086 4826    pp3     ldr              r0, = func5 ;baza X(n) 
+   56 00000086 4827    pp3     ldr              r0, = func5 ;baza X(n) 
    57 00000088 F04F 0100       mov              r1, #0      ;undex n 
    58 0000008C 4A28            ldr              r2,= 0x20000040 ;baza Y(k)
    59 0000008E F04F 0300       mov              r3, #0      ;undex k 
@@ -219,8 +219,8 @@ Symbol: func3
    Definitions
       At line 89 in file main.s
    Uses
-      None
-Comment: func3 unused
+      At line 16 in file main.s
+Comment: func3 used once
 func4 000000FE
 
 Symbol: func4
@@ -235,7 +235,6 @@ Symbol: func5
    Definitions
       At line 99 in file main.s
    Uses
-      At line 16 in file main.s
       At line 35 in file main.s
       At line 56 in file main.s
 
@@ -259,9 +258,9 @@ m2 0000005A
 
 
 
+
 ARM Macro Assembler    Page 2 Alphabetic symbol ordering
 Relocatable symbols
-
 
 Symbol: m2
    Definitions
@@ -283,8 +282,8 @@ Symbol: pp1
    Definitions
       At line 15 in file main.s
    Uses
-      None
-Comment: pp1 unused
+      At line 11 in file main.s
+Comment: pp1 used once
 pp2 00000046
 
 Symbol: pp2
@@ -299,8 +298,8 @@ Symbol: pp3
    Definitions
       At line 56 in file main.s
    Uses
-      At line 13 in file main.s
-Comment: pp3 used once
+      None
+Comment: pp3 unused
 program 00000000
 
 Symbol: program
