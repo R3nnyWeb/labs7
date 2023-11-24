@@ -6,6 +6,7 @@ import java.util.Arrays;
 class Queue {
     int size;
     int top = 0;
+    int first = 0;
     int[] arr;
 
     public Queue(int size) {
@@ -15,16 +16,14 @@ class Queue {
 
     public void add(int value) {
         arr[top] = value;
-        top++;
+        top= top+1 % size;
     }
-
-
     public boolean isEmpty() {
-        return top == 0;
+        return top == first;
     }
 
     public int poll() {
-        return arr[top--];
+        return arr[first++];
     }
 }
 
@@ -161,7 +160,7 @@ public class Main {
         return num;
     }
 
-        public static int[] topologicalModifiedSort(Node[] heads) {
+    public static int[] topologicalModifiedSort(Node[] heads) {
         boolean[] visited = new boolean[heads.length];
         int[] labels = new int[heads.length];
         int num = heads.length;
@@ -220,12 +219,12 @@ public class Main {
         System.out.println(Arrays.toString(linkingByDFS(notOriented)));
 
         Node[] oriented = new Node[6];
-        oriented[0] = fillHead(1, 5);
-        oriented[1] = fillHead(2);
-        oriented[2] = fillHead();
+        oriented[0] = fillHead(1, 2, 3);
+        oriented[1] = fillHead(5);
+        oriented[2] = fillHead(1,5);
         oriented[3] = fillHead(2);
-        oriented[4] = fillHead(0, 3, 5);
-        oriented[5] = fillHead(1, 2, 3);
+        oriented[4] = fillHead(0, 3);
+        oriented[5] = fillHead();
 
         System.out.println("Ориентированный: ");
         printGraph(oriented);
@@ -233,11 +232,11 @@ public class Main {
         System.out.println(Arrays.toString(topologicalSort(oriented)));
 
         Node[] withContur = new Node[4];
-        oriented[0] = fillHead(1);
-        oriented[1] = fillHead(2);
-        oriented[2] = fillHead(3);
-        oriented[3] = fillHead(0);
+        withContur[0] = fillHead(1);
+        withContur[1] = fillHead(2);
+        withContur[2] = fillHead(3);
+        withContur[3] = fillHead(0);
         System.out.println("Топологическая модифицированная");
-        System.out.println(Arrays.toString(topologicalModifiedSort(oriented)));
+        System.out.println(Arrays.toString(topologicalModifiedSort(withContur)));
     }
 }
