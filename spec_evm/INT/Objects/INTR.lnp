@@ -1,5 +1,5 @@
 --cpu Cortex-M3
-".\objects\1.o"
+".\objects\2.o"
 ".\objects\startup_mdr32f9qx.o"
 ".\objects\system_mdr32f9qx.o"
 ".\objects\mdr32f9qx_port.o"

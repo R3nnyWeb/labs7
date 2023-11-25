@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\INTR.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\INTR.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Nov 22 21:15:19 2023
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sat Nov 25 18:23:22 2023
 <BR><P>
 <H3>Maximum Stack Usage =         56 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -26,7 +26,6 @@ Mutually Recursive functions
  <LI><a href="#[9]">SVC_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[9]">SVC_Handler</a><BR>
  <LI><a href="#[a]">DebugMon_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[a]">DebugMon_Handler</a><BR>
  <LI><a href="#[b]">PendSV_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[b]">PendSV_Handler</a><BR>
- <LI><a href="#[c]">SysTick_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[c]">SysTick_Handler</a><BR>
  <LI><a href="#[1a]">ADC_IRQHandler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[1a]">ADC_IRQHandler</a><BR>
 </UL>
 <P>
@@ -41,7 +40,7 @@ Function Pointers
  <LI><a href="#[1b]">COMPARATOR_IRQHandler</a> from startup_mdr32f9qx.o(.text) referenced from startup_mdr32f9qx.o(RESET)
  <LI><a href="#[10]">DMA_IRQHandler</a> from startup_mdr32f9qx.o(.text) referenced from startup_mdr32f9qx.o(RESET)
  <LI><a href="#[a]">DebugMon_Handler</a> from startup_mdr32f9qx.o(.text) referenced from startup_mdr32f9qx.o(RESET)
- <LI><a href="#[1e]">EXT_INT1_IRQHandler</a> from 1.o(i.EXT_INT1_IRQHandler) referenced from startup_mdr32f9qx.o(RESET)
+ <LI><a href="#[1e]">EXT_INT1_IRQHandler</a> from 2.o(i.EXT_INT1_IRQHandler) referenced from startup_mdr32f9qx.o(RESET)
  <LI><a href="#[1f]">EXT_INT2_IRQHandler</a> from startup_mdr32f9qx.o(.text) referenced from startup_mdr32f9qx.o(RESET)
  <LI><a href="#[20]">EXT_INT3_IRQHandler</a> from startup_mdr32f9qx.o(.text) referenced from startup_mdr32f9qx.o(RESET)
  <LI><a href="#[21]">EXT_INT4_IRQHandler</a> from startup_mdr32f9qx.o(.text) referenced from startup_mdr32f9qx.o(RESET)
@@ -55,7 +54,7 @@ Function Pointers
  <LI><a href="#[13]">SSP1_IRQHandler</a> from startup_mdr32f9qx.o(.text) referenced from startup_mdr32f9qx.o(RESET)
  <LI><a href="#[1c]">SSP2_IRQHandler</a> from startup_mdr32f9qx.o(.text) referenced from startup_mdr32f9qx.o(RESET)
  <LI><a href="#[9]">SVC_Handler</a> from startup_mdr32f9qx.o(.text) referenced from startup_mdr32f9qx.o(RESET)
- <LI><a href="#[c]">SysTick_Handler</a> from startup_mdr32f9qx.o(.text) referenced from startup_mdr32f9qx.o(RESET)
+ <LI><a href="#[c]">SysTick_Handler</a> from 2.o(i.SysTick_Handler) referenced from startup_mdr32f9qx.o(RESET)
  <LI><a href="#[22]">SystemInit</a> from system_mdr32f9qx.o(i.SystemInit) referenced from startup_mdr32f9qx.o(.text)
  <LI><a href="#[17]">Timer1_IRQHandler</a> from startup_mdr32f9qx.o(.text) referenced from startup_mdr32f9qx.o(RESET)
  <LI><a href="#[18]">Timer2_IRQHandler</a> from startup_mdr32f9qx.o(.text) referenced from startup_mdr32f9qx.o(RESET)
@@ -262,13 +261,6 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_mdr32f9qx.o(RESET)
 </UL>
-<P><STRONG><a name="[c]"></a>SysTick_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, startup_mdr32f9qx.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
-</UL>
-<BR>[Called By]<UL><LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
-</UL>
-<BR>[Address Reference Count : 1]<UL><LI> startup_mdr32f9qx.o(RESET)
-</UL>
 <P><STRONG><a name="[1a]"></a>ADC_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_mdr32f9qx.o(.text))
 <BR><BR>[Calls]<UL><LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_IRQHandler
 </UL>
@@ -378,7 +370,7 @@ Global Symbols
 
 <P><STRONG><a name="[74]"></a>__use_no_semihosting_swi</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, use_no_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[38]"></a>CPU_Config</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, 1.o(i.CPU_Config))
+<P><STRONG><a name="[38]"></a>CPU_Config</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, 2.o(i.CPU_Config))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = CPU_Config &rArr; RST_CLK_HSEstatus &rArr; RST_CLK_GetFlagStatus
 </UL>
 <BR>[Calls]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RST_CLK_HSEstatus
@@ -394,11 +386,11 @@ Global Symbols
 
 <P><STRONG><a name="[75]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, indicate_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[40]"></a>Delay</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, 1.o(i.Delay))
+<P><STRONG><a name="[40]"></a>Delay</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, 2.o(i.Delay))
 <BR><BR>[Called By]<UL><LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXT_INT1_IRQHandler
 </UL>
 
-<P><STRONG><a name="[1e]"></a>EXT_INT1_IRQHandler</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, 1.o(i.EXT_INT1_IRQHandler))
+<P><STRONG><a name="[1e]"></a>EXT_INT1_IRQHandler</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, 2.o(i.EXT_INT1_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = EXT_INT1_IRQHandler &rArr; changeLedStatus
 </UL>
 <BR>[Calls]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;changeLedStatus
@@ -406,7 +398,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_mdr32f9qx.o(RESET)
 </UL>
-<P><STRONG><a name="[42]"></a>InputConfig</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, 1.o(i.InputConfig))
+<P><STRONG><a name="[42]"></a>InputConfig</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, 2.o(i.InputConfig))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = InputConfig &rArr; PORT_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PORT_Init
@@ -414,7 +406,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[44]"></a>LedConfig</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, 1.o(i.LedConfig))
+<P><STRONG><a name="[44]"></a>LedConfig</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, 2.o(i.LedConfig))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = LedConfig &rArr; PORT_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PORT_Init
@@ -490,6 +482,9 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
+<P><STRONG><a name="[c]"></a>SysTick_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, 2.o(i.SysTick_Handler))
+<BR>[Address Reference Count : 1]<UL><LI> startup_mdr32f9qx.o(RESET)
+</UL>
 <P><STRONG><a name="[46]"></a>SystemCoreClockUpdate</STRONG> (Thumb, 130 bytes, Stack size 12 bytes, system_mdr32f9qx.o(i.SystemCoreClockUpdate))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = SystemCoreClockUpdate
 </UL>
@@ -503,7 +498,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_mdr32f9qx.o(.text)
 </UL>
-<P><STRONG><a name="[41]"></a>changeLedStatus</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, 1.o(i.changeLedStatus))
+<P><STRONG><a name="[41]"></a>changeLedStatus</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, 2.o(i.changeLedStatus))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = changeLedStatus
 </UL>
 <BR>[Calls]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PORT_SetBits
@@ -514,7 +509,7 @@ Global Symbols
 <LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXT_INT1_IRQHandler
 </UL>
 
-<P><STRONG><a name="[30]"></a>main</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, 1.o(i.main))
+<P><STRONG><a name="[30]"></a>main</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, 2.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = main &rArr; LedConfig &rArr; PORT_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RST_CLK_PCLKcmd
