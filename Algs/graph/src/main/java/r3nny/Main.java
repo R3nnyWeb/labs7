@@ -231,12 +231,25 @@ public class Main {
         System.out.println("Топологическая");
         System.out.println(Arrays.toString(topologicalSort(oriented)));
 
-        Node[] withContur = new Node[4];
-        withContur[0] = fillHead(1);
-        withContur[1] = fillHead(2);
-        withContur[2] = fillHead(3);
-        withContur[3] = fillHead(0);
-        System.out.println("Топологическая модифицированная");
-        System.out.println(Arrays.toString(topologicalModifiedSort(withContur)));
+//        Node[] withContur = new Node[4];
+//        withContur[0] = fillHead(1);
+//        withContur[1] = fillHead(2);
+//        withContur[2] = fillHead(3);
+//        withContur[3] = fillHead(0);
+//        System.out.println("Топологическая модифицированная");
+//        System.out.println(Arrays.toString(topologicalModifiedSort(withContur)));
+
+        Node[] topological = new Node[7];
+
+        topological[0] = fillHead(1, 2);
+        topological[1] = fillHead(5);
+        topological[2] = fillHead(1);
+        topological[3] = fillHead();
+        topological[4] = fillHead();
+        topological[5] = fillHead(1,2,3);
+        topological[6] = fillHead(4);
+
+        System.out.println(Arrays.toString(topologicalModifiedSort(topological)));
+
     }
 }
