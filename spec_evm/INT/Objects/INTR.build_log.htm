@@ -5,7 +5,7 @@
 <h2>Tool Versions:</h2>
 IDE-Version: µVision V5.26.2.0
 Copyright (C) 2018 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: Nikita Vashkulatov, -, LIC=----
+License Information: Nikita Vashkulatov, rsreu, LIC=----
  
 Tool Versions:
 Toolchain:       MDK-Lite  Version: 5.26.2.0
@@ -21,18 +21,20 @@ Target DLL:      Segger\JL2CM3.dll V2.99.31.0
 Dialog DLL:      TCM.DLL V1.36.1.0
  
 <h2>Project:</h2>
-C:\Users\R3nny\Desktop\labs7\spec_evm\INTR.uvprojx
-Project File Date:  11/22/2023
+E:\MyDoc\Projects\labs7\spec_evm\INT\INTR.uvprojx
+Project File Date:  11/25/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-compiling 1.c...
-1.c(85): warning:  #1-D: last line of file ends without a newline
+compiling 2.c...
+2.c(13): warning:  #2532-D: support for trigraphs is disabled
+  void Delay(int del) //????????? ??????? del - ???-?? ??????
+2.c(92): warning:  #1-D: last line of file ends without a newline
   }
 linking...
-Program Size: Code=1720 RO-data=224 RW-data=4 ZI-data=1660  
-".\Objects\INTR.axf" - 0 Error(s), 1 Warning(s).
+Program Size: Code=1724 RO-data=224 RW-data=4 ZI-data=1660  
+".\Objects\INTR.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -65,24 +67,24 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.1.2
 
    * Component: Keil::Device:Startup_MDR1986BE9x:1.3.1
-      Include file:  Libraries\CMSIS\CM3\CoreSupport\core_cm3.h
       Include file:  Config\MDR32F9Qx_config.h
-      Source file:   Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\startup\arm\startup_MDR32F9Qx.s
-      Include file:  Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\startup\arm\system_MDR32F9Qx.h
       Source file:   Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\startup\arm\system_MDR32F9Qx.c
+      Include file:  Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\startup\arm\system_MDR32F9Qx.h
+      Source file:   Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\startup\arm\startup_MDR32F9Qx.s
+      Include file:  Libraries\CMSIS\CM3\CoreSupport\core_cm3.h
 
    * Component: Keil::Drivers:PORT:1.3.1
-      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_port.h
       Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_port.c
+      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_port.h
 
    * Component: Keil::Drivers:RST_CLK:1.3.1
       Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_rst_clk.c
       Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_rst_clk.h
 
    * Component: Keil::Drivers:TIMER:1.3.1
-      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_timer.c
       Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_timer.h
-Build Time Elapsed:  00:00:02
+      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_timer.c
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
