@@ -12,7 +12,7 @@
 
 using namespace std;
 void HelloWOrld(const char* filename, const cl_context& context, cl_device_id* devices, const cl_command_queue& commandQueue);
-void Mul(const char* filename, const cl_context& context, cl_device_id* devices, const cl_command_queue& commandQueue);
+void arr(const char* filename, const cl_context& context, cl_device_id* devices, const cl_command_queue& commandQueue);
 int convertToString(const char* filename, std::string& s)
 {
 	size_t size;
@@ -81,8 +81,8 @@ void Init() {
 	cout << endl << "Run programs" << endl << endl;
 	const char* filename = "HelloWorld_Kernel.cl";
 	HelloWOrld(filename, context, devices, commandQueue);
-	//const char* filename1 = "Mul.cl";
-	//Mul(filename1, context, devices, commandQueue);
+	const char* filename1 = "arr.cl";
+	arr(filename1, context, devices, commandQueue);
 
 	status = clReleaseCommandQueue(commandQueue);
 	status = clReleaseContext(context);
@@ -138,7 +138,7 @@ void HelloWOrld( const char* filename, const cl_context& context, cl_device_id* 
 	}
 }
 
-void Mul(const char* filename, const cl_context& context, cl_device_id* devices, const cl_command_queue& commandQueue)
+void arr(const char* filename, const cl_context& context, cl_device_id* devices, const cl_command_queue& commandQueue)
 {
 	cl_int status;
 	string sourceStr;
@@ -148,43 +148,40 @@ void Mul(const char* filename, const cl_context& context, cl_device_id* devices,
 	cl_program program = clCreateProgramWithSource(context, 1, &source, sourceSize, NULL);
 	status = clBuildProgram(program, 1, devices, NULL, NULL, NULL);
 
-	const size_t size = 100;
-	
+	const size_t size = 10;
+	cout << "Input data: " << endl;
 	//{1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f, 10.0f }
-	float input1[size];
-	float input2[size];
+	cl_int4 input[size];
 	for (size_t i = 1; i <= size; i++) {
-		input1[i-1] = (float)i;
-		input2[i-1] = (float)(i+1);
+		input[i-1].s[0] = i;
+		input[i-1].s[1] = i+i/2;
+		input[i-1].s[2] = i*2;
+		input[i-1].s[3] = i/2*3;
+		cout << "(" << input[i - 1].s[0] <<", "<< input[i - 1].s[1] << ", " << input[i - 1].s[2] << ", " << input[i - 1].s[3] << ") ";
 	}
+	cout << endl;
+	int phase = 0;
+	cl_int4* output = (cl_int4*)malloc(size);
 
-
-
-	float* output = (float*)malloc(size);
-
-
-
-	cl_mem inputBuffer = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, (size) * sizeof(float), (void*)input1, NULL);
-
-	cl_mem inputBuffer2 = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, (size ) * sizeof(float), (void*)input2, NULL);
-
-	cl_mem outputBuffer = clCreateBuffer(context, CL_MEM_WRITE_ONLY, (size ) * sizeof(float), NULL, NULL);
+	cl_mem inputBuffer = clCreateBuffer(context, CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR, (size) * sizeof(cl_int4), (void*)input, NULL);
+	cl_mem phaseBuffer = clCreateBuffer(context, CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR, sizeof(int), (void*)&phase, NULL);
 
 	cl_kernel kernel = clCreateKernel(program, "mul", NULL);
 
 	status = clSetKernelArg(kernel, 0, sizeof(cl_mem), (void*)&inputBuffer);
-	status = clSetKernelArg(kernel, 1, sizeof(cl_mem), (void*)&inputBuffer2);
-	status = clSetKernelArg(kernel, 2, sizeof(cl_mem), (void*)&outputBuffer);
+	status = clSetKernelArg(kernel, 1, sizeof(cl_mem), (void*)&phaseBuffer);
+	status = clSetKernelArg(kernel, 2, sizeof(cl_mem), (void*)&inputBuffer);
 
 	size_t global_work_size[1] = { size };
 
 	status = clEnqueueNDRangeKernel(commandQueue, kernel, 1, NULL, global_work_size, NULL, 0, NULL, NULL);
+	status = clEnqueueNDRangeKernel(commandQueue, kernel, 1, NULL, global_work_size, NULL, 0, NULL, NULL);
 
-	status = clEnqueueReadBuffer(commandQueue, outputBuffer, CL_TRUE, 0, size * sizeof(float), output, 0, NULL, NULL);
-
+	status = clEnqueueReadBuffer(commandQueue, inputBuffer, CL_TRUE, 0, size * sizeof(cl_int4), output, 0, NULL, NULL);
+	cout << "Output data: " << endl;
 	for (size_t i = 0; i < size; i++)
 	{
-		cout << output[i] << "  ";
+		cout << "(" << output[i].s[0] << ", " << output[i].s[1] << ", " << output[i].s[2] << ", " << output[i].s[3] << ") ";
 	}
 	cout << endl;
 	
@@ -192,9 +189,6 @@ void Mul(const char* filename, const cl_context& context, cl_device_id* devices,
 	status = clReleaseKernel(kernel);
 	status = clReleaseProgram(program);
 	status = clReleaseMemObject(inputBuffer);
-	status = clReleaseMemObject(outputBuffer);
-
-	
 }
 
 int main()

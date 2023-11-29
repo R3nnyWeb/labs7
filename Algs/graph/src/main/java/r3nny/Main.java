@@ -23,7 +23,9 @@ class Queue {
     }
 
     public int poll() {
-        return arr[first++];
+        int val = arr[first];
+        first = first+1 % size;
+        return val;
     }
 }
 
@@ -198,15 +200,30 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        Node[] forBFS = new Node[7];
+
+        forBFS[0] = fillHead(1);
+        forBFS[1] = fillHead(4);
+        forBFS[2] = fillHead(0, 1, 3);
+        forBFS[3] = fillHead( );
+        forBFS[4] = fillHead( 3);
+        forBFS[5] = fillHead();
+        forBFS[6] = fillHead(5);
+
+        printGraph(forBFS);
+        System.out.println();
+        BFS(forBFS);
+        System.out.println();
+
         Node[] notOriented = new Node[7];
 
         notOriented[0] = fillHead(1, 2);
-        notOriented[1] = fillHead(0, 2, 4);
-        notOriented[2] = fillHead(0, 1, 3);
-        notOriented[3] = fillHead(2, 4);
-        notOriented[4] = fillHead(3, 1);
-        notOriented[5] = fillHead(6);
-        notOriented[6] = fillHead(5);
+        notOriented[1] = fillHead(0, 2, 5);
+        notOriented[2] = fillHead(0,1,5);
+        notOriented[3] = fillHead();
+        notOriented[4] = fillHead(6);
+        notOriented[5] = fillHead(1,2);
+        notOriented[6] = fillHead(4);
 
         printGraph(notOriented);
 
