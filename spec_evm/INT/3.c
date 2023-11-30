@@ -39,7 +39,7 @@ void CPU_Config(){
 	RST_CLK_HSEconfig(RST_CLK_HSE_ON);
 	//?????? ?????????, ?????? ???? ?????, ?? ??????? ? ????????? ?????????
 	while (RST_CLK_HSEstatus()!=SUCCESS);
-	RST_CLK_CPU_PLLconfig(RST_CLK_CPU_PLLsrcHSEdiv1, RST_CLK_CPU_PLLmul10);
+	RST_CLK_CPU_PLLconfig(RST_CLK_CPU_PLLsrcHSEdiv1, RST_CLK_CPU_PLLmul6);
 	RST_CLK_CPU_PLLcmd(ENABLE);
 	
 	while (RST_CLK_CPU_PLLstatus()!=SUCCESS);
@@ -48,31 +48,31 @@ void CPU_Config(){
 }
 
 void changeLedStatus(uint8_t led){
-	if(PORT_ReadInputDataBit(MDR_PORTC, led)){
-		PORT_ResetBits(MDR_PORTC, led);
+	if(PORT_ReadInputDataBit(MDR_PORTA, led)){
+		PORT_ResetBits(MDR_PORTA, led);
 	} else {
-		PORT_SetBits(MDR_PORTC, led);
+		PORT_SetBits(MDR_PORTA, led);
 	}
 }
 
 void IntConfig(){
 	__enable_irq();
-	NVIC_EnableIRQ(EXT_INT1_IRQn);
+//	NVIC_EnableIRQ(EXT_INT1_IRQn);
 	NVIC_EnableIRQ(SysTick_IRQn);
 	SysTick_Config(delay);
 	//Same
-	NVIC_SetPriority(EXT_INT1_IRQn, 1);
-	NVIC_SetPriority(SysTick_IRQn, 1);
+	//NVIC_SetPriority(EXT_INT1_IRQn, 1);
+	//NVIC_SetPriority(SysTick_IRQn, 1);
 	//Timer
 	NVIC_SetPriority(EXT_INT1_IRQn, 2);
 	NVIC_SetPriority(SysTick_IRQn, 1);
 	//Btn
-	NVIC_SetPriority(EXT_INT1_IRQn, 1);
-	NVIC_SetPriority(SysTick_IRQn, 2);
+	//NVIC_SetPriority(EXT_INT1_IRQn, 1);
+	//NVIC_SetPriority(SysTick_IRQn, 2);
 }
 
 void SysTick_Handler(void){
-	changeLedStatus(LED_ONE);
+	changeLedStatus(LED_TWO);
 }
 
 void  EXT_INT1_IRQHandler(void){
@@ -86,7 +86,7 @@ int main(){
 	OutputConfig();
 	InputConfig();
 
-
+IntConfig();
 	
 	uint32_t count = 0;
 	while(1){

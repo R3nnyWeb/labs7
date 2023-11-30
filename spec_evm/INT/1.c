@@ -31,7 +31,7 @@ void InputConfig(){
 	InputInit.PORT_FUNC = PORT_FUNC_ALTER;
 	InputInit.PORT_OE = PORT_OE_IN;
 	InputInit.PORT_SPEED = PORT_SPEED_FAST;
-		InputInit.PORT_PULL_UP = PORT_PULL_UP_OFF;
+	InputInit.PORT_PULL_UP = PORT_PULL_UP_OFF;
 	InputInit.PORT_PULL_DOWN = PORT_PULL_DOWN_ON;
 
 	PORT_Init(MDR_PORTA, &InputInit);
@@ -58,15 +58,20 @@ void changeLedStatus(uint8_t led){
 }
 
 void IntConfig(){
-	
-		__enable_irq();
 	NVIC_EnableIRQ(EXT_INT1_IRQn);
-
+	__enable_irq();
 }
 
 void  EXT_INT1_IRQHandler(void){
-	Delay(delay);
+	Delay(delay/5);
 	changeLedStatus(LED_ZERO);
+	Delay(delay/5);
+	changeLedStatus(LED_ZERO);
+	Delay(delay/5);
+	changeLedStatus(LED_ZERO);
+	Delay(delay/5);
+	changeLedStatus(LED_ZERO);
+		Delay(delay);
 }
 
 int main(){
@@ -75,10 +80,9 @@ int main(){
 	
 	CPU_Config();
 	LedConfig();
-	IntConfig();
 	InputConfig();
+	IntConfig();
 
-	
 	uint32_t count = 0;
 	while(1){
 
