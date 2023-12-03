@@ -104,7 +104,8 @@ void TimeConfig(void){
 	BKP_RTC_WaitForUpdate();
 	BKP_RTC_Enable(ENABLE);
 	
-	BKP_RTC_SetAlarm(uint32_t AlarmValue);
+	uint32_t minute = 60 * 10e6;
+	BKP_RTC_SetAlarm(BKP_RTC_GetCounter() + minute);
 	
 	BKP_RTC_ITConfig(BKP_RTC_IT_ALRF, ENABLE);
 }
@@ -145,6 +146,12 @@ void  SysTick_Handler(void){
 	//output string
 	strftime(stroka,16,"%H,%M,%S",tmstrct);
 	PrintString(stroka,7);
+}
+
+void BACKUP_IRQHandler(void){
+		char intr[9];
+		sprintf(model, "%s", "Interrupt");
+		PrintString(intr, 1);
 }
 
 int main(){
