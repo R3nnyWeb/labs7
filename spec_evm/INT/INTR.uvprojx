@@ -383,9 +383,9 @@
           <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
-              <FileName>1.c</FileName>
+              <FileName>3.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\1.c</FilePath>
+              <FilePath>.\3.c</FilePath>
             </File>
           </Files>
         </Group>

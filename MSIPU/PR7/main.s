@@ -7,7 +7,7 @@ stack_top
 	area program, code, readonly
 	entry
 start
-	ldr r0, = func1; base func
+	ldr r0, = func4; base func
 	mov r1, #0 ; index n
 	ldr r2, = gs ;base gs
 	mov r6, #0x20000000 ; base out
@@ -25,7 +25,7 @@ m	ldrsb r7, [r0, r1] ;func(n)
 	and r3, #0x0f
 	add r1, #1
 	ands r1, #0x0f
-	;cmps r12, 0x00
+	cmps r1, 0x00
 	bne m
 	asr r11, #10
 	str r11, [r6], #4

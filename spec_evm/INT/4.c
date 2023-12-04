@@ -71,7 +71,7 @@ int main(){
 	CPU_Config();
 	LedConfig();
 	InputConfig();
-
+	IntConfig();
 	
 	uint32_t count = 0;
 	while(1){
