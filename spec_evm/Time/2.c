@@ -103,6 +103,10 @@ void TimeConfig(void){
 	BKP_RTC_SetPrescaler(32768);
 	BKP_RTC_WaitForUpdate();
 	BKP_RTC_Enable(ENABLE);
+	
+	BKP_RTC_SetAlarm(uint32_t AlarmValue);
+	
+	BKP_RTC_ITConfig(BKP_RTC_IT_ALRF, ENABLE);
 }
 
 void CPU_Config(){
@@ -138,8 +142,9 @@ void  SysTick_Handler(void){
 	MDR_PORTC->RXTX^=0x2;
 	time  = BKP_RTC_GetCounter();
 	tmstrct = localtime(&time);
+	//output string
 	strftime(stroka,16,"%H,%M,%S",tmstrct);
-	PrintString(stroka,5);
+	PrintString(stroka,7);
 }
 
 int main(){
@@ -156,6 +161,8 @@ int main(){
 	TimeConfig();
 	IntConfig();
 	
+	uint8_t *brigada[9] = {{cyr_B},{cyr_r} ,{cyr_i},{cyr_g}, {cyr_a},{cyr_d},{cyr_a},{sym_sp}, {dig_4}};
+	LcdScrollString (brigada, 0, 9, 8);
 
 	uint32_t count = 0;
 	while(1){

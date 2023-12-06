@@ -1,0 +1,10 @@
+module alu (c,af,f,g,sum,data,p,m);
+input c;
+input [3:0] af;
+input [7:0] f, g;
+output [15:0] data;
+output [19:0] sum;
+reg [19:0] sum;
+output [15:0] p;
+output [15:0] m;
+assign m =(f[7]? 256-f :f)*(g[7]? 256-g:g);
