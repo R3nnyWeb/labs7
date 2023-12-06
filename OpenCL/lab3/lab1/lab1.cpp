@@ -12,7 +12,8 @@
 
 using namespace std;
 void HelloWOrld(const char* filename, const cl_context& context, cl_device_id* devices, const cl_command_queue& commandQueue);
-void arr(const char* filename, const cl_context& context, cl_device_id* devices, const cl_command_queue& commandQueue);
+void arr1(const char* filename, const cl_context& context, cl_device_id* devices, const cl_command_queue& commandQueue);
+void arr2(const char* filename, const cl_context& context, cl_device_id* devices, const cl_command_queue& commandQueue);
 int convertToString(const char* filename, std::string& s)
 {
 	size_t size;
@@ -81,8 +82,12 @@ void Init() {
 	cout << endl << "Run programs" << endl << endl;
 	const char* filename = "HelloWorld_Kernel.cl";
 	HelloWOrld(filename, context, devices, commandQueue);
-	const char* filename1 = "arr.cl";
-	arr(filename1, context, devices, commandQueue);
+	const char* filename2 = "arr2.cl";
+	const char* filename3 = "arr3.cl";
+	cout << "Second Ex" << endl;
+	arr1(filename2, context, devices, commandQueue);
+	cout << "Third Ex" << endl;
+	arr2(filename3, context, devices, commandQueue);
 
 	status = clReleaseCommandQueue(commandQueue);
 	status = clReleaseContext(context);
@@ -138,7 +143,63 @@ void HelloWOrld( const char* filename, const cl_context& context, cl_device_id* 
 	}
 }
 
-void arr(const char* filename, const cl_context& context, cl_device_id* devices, const cl_command_queue& commandQueue)
+void arr1(const char* filename, const cl_context& context, cl_device_id* devices, const cl_command_queue& commandQueue)
+{
+	cl_int status;
+	string sourceStr;
+	status = convertToString(filename, sourceStr);
+	const char* source = sourceStr.c_str();
+	size_t sourceSize[] = { strlen(source) };
+	cl_program program = clCreateProgramWithSource(context, 1, &source, sourceSize, NULL);
+	status = clBuildProgram(program, 1, devices, NULL, NULL, NULL);
+
+	
+	const size_t size = 10;
+	cout << "Input data: " << endl;
+	//{1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f, 10.0f }
+	cl_int4 input[size];
+	for (size_t i = 1; i <= size; i++) {
+		input[i-1].s[0] = i*10;
+		input[i-1].s[1] = i+i/2;
+		input[i-1].s[2] = i*2;
+		input[i-1].s[3] = i/2*5;
+		cout << "(" << input[i - 1].s[0] <<", "<< input[i - 1].s[1] << ", " << input[i - 1].s[2] << ", " << input[i - 1].s[3] << ") ";
+	}
+	cout << endl;
+	cl_int4* output = (cl_int4*)malloc(size);
+
+	cl_mem inputBuffer = clCreateBuffer(context, CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR, (size) * sizeof(cl_int4), (void*)input, NULL);
+	cl_mem outputBuffer = clCreateBuffer(context, CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR, (size) * sizeof(cl_int4), (void*)output, NULL);
+
+	cl_kernel kernel = clCreateKernel(program, "mul", NULL);
+	cl_kernel kernel2 = clCreateKernel(program, "mul2", NULL);
+
+	status = clSetKernelArg(kernel, 0, sizeof(cl_mem), (void*)&inputBuffer);
+	status = clSetKernelArg(kernel, 1, sizeof(cl_mem), (void*)&outputBuffer);
+	status = clSetKernelArg(kernel2, 0, sizeof(cl_mem), (void*)&outputBuffer);
+	status = clSetKernelArg(kernel2, 1, sizeof(cl_mem), (void*)&inputBuffer);
+
+	size_t global_work_size[1] = { size };
+
+	status = clEnqueueNDRangeKernel(commandQueue, kernel, 1, NULL, global_work_size, NULL, 0, NULL, NULL);
+	status = clEnqueueNDRangeKernel(commandQueue, kernel2, 1, NULL, global_work_size, NULL, 0, NULL, NULL);
+
+	status = clEnqueueReadBuffer(commandQueue, inputBuffer, CL_TRUE, 0, size * sizeof(cl_int4), output, 0, NULL, NULL);
+	cout << "Output data: " << endl;
+	for (size_t i = 0; i < size; i++)
+	{
+		cout << "(" << output[i].s[0] << ", " << output[i].s[1] << ", " << output[i].s[2] << ", " << output[i].s[3] << ") ";
+	}
+	cout << endl;
+
+	//status = clReleaseKernel(kernel);
+	status = clReleaseKernel(kernel2);
+	status = clReleaseProgram(program);
+	status = clReleaseMemObject(inputBuffer);
+	status = clReleaseMemObject(outputBuffer);
+}
+
+void arr2(const char* filename, const cl_context& context, cl_device_id* devices, const cl_command_queue& commandQueue)
 {
 	cl_int status;
 	string sourceStr;
@@ -150,47 +211,43 @@ void arr(const char* filename, const cl_context& context, cl_device_id* devices,
 
 	const size_t size = 10;
 	cout << "Input data: " << endl;
-	//{1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f, 9.0f, 10.0f }
-	cl_int4 input[size];
-	for (size_t i = 1; i <= size; i++) {
-		input[i-1].s[0] = i;
-		input[i-1].s[1] = i+i/2;
-		input[i-1].s[2] = i*2;
-		input[i-1].s[3] = i/2*3;
-		cout << "(" << input[i - 1].s[0] <<", "<< input[i - 1].s[1] << ", " << input[i - 1].s[2] << ", " << input[i - 1].s[3] << ") ";
+	int input[size];
+	for (size_t i = 0; i < size; i++) {
+		input[i] = 1;
+		cout << input[i] << "  ";
 	}
 	cout << endl;
-	int phase = 0;
-	cl_int4* output = (cl_int4*)malloc(size);
+	int* output = (int*)malloc(size);
 
-	cl_mem inputBuffer = clCreateBuffer(context, CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR, (size) * sizeof(cl_int4), (void*)input, NULL);
-	cl_mem phaseBuffer = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, sizeof(int), (void*)&phase, NULL);
+	cl_mem inputBuffer = clCreateBuffer(context, CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR, (size) * sizeof(int), (void*)input, NULL);
+	cl_mem outputBuffer = clCreateBuffer(context, CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR, (size) * sizeof(int), (void*)output, NULL);
 
-	cl_kernel kernel = clCreateKernel(program, "mul", NULL);
+	cl_kernel kernel = clCreateKernel(program, "sum", NULL);
+	cl_kernel kernel2 = clCreateKernel(program, "change", NULL);
 
 	status = clSetKernelArg(kernel, 0, sizeof(cl_mem), (void*)&inputBuffer);
-	status = clSetKernelArg(kernel, 1, sizeof(cl_mem), (void*)&phaseBuffer);
-	status = clSetKernelArg(kernel, 2, sizeof(cl_mem), (void*)&inputBuffer);
+	status = clSetKernelArg(kernel, 1, sizeof(cl_mem), (void*)&outputBuffer);
+	status = clSetKernelArg(kernel2, 0, sizeof(cl_mem), (void*)&outputBuffer);
+	status = clSetKernelArg(kernel2, 1, sizeof(cl_mem), (void*)&inputBuffer);
 
 	size_t global_work_size[1] = { size };
 
 	status = clEnqueueNDRangeKernel(commandQueue, kernel, 1, NULL, global_work_size, NULL, 0, NULL, NULL);
-	phase = 1;
-	status = clSetKernelArg(kernel, 1, sizeof(cl_mem), (void*)&phaseBuffer);
-	status = clEnqueueNDRangeKernel(commandQueue, kernel, 1, NULL, global_work_size, NULL, 0, NULL, NULL);
+	status = clEnqueueNDRangeKernel(commandQueue, kernel2, 1, NULL, global_work_size, NULL, 0, NULL, NULL);
 
-	status = clEnqueueReadBuffer(commandQueue, inputBuffer, CL_TRUE, 0, size * sizeof(cl_int4), output, 0, NULL, NULL);
+	status = clEnqueueReadBuffer(commandQueue, inputBuffer, CL_TRUE, 0, size * sizeof(int), output, 0, NULL, NULL);
 	cout << "Output data: " << endl;
 	for (size_t i = 0; i < size; i++)
 	{
-		cout << "(" << output[i].s[0] << ", " << output[i].s[1] << ", " << output[i].s[2] << ", " << output[i].s[3] << ") ";
+		cout << output[i] << " ";
 	}
 	cout << endl;
-	
 
-	status = clReleaseKernel(kernel);
+	//status = clReleaseKernel(kernel);
+	status = clReleaseKernel(kernel2);
 	status = clReleaseProgram(program);
 	status = clReleaseMemObject(inputBuffer);
+	status = clReleaseMemObject(outputBuffer);
 }
 
 int main()

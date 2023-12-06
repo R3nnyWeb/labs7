@@ -23,7 +23,10 @@
     <None Include="HelloWorld_Kernel.cl">
       <Filter>Исходные файлы</Filter>
     </None>
-    <None Include="arr.cl">
+    <None Include="arr2.cl">
+      <Filter>Исходные файлы</Filter>
+    </None>
+    <None Include="arr3.cl">
       <Filter>Исходные файлы</Filter>
     </None>
   </ItemGroup>

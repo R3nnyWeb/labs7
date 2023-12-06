@@ -133,8 +133,9 @@
     <ClCompile Include="lab1.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="arr3.cl" />
     <None Include="HelloWorld_Kernel.cl" />
-    <None Include="arr.cl" />
+    <None Include="arr2.cl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

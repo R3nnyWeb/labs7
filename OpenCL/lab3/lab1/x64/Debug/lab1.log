@@ -1,6 +1,6 @@
 ﻿  lab1.cpp
-B:\study\labs7\OpenCL\lab3\lab1\lab1.cpp(156,22): warning C4267: =: преобразование из "size_t" в "cl_int"; возможна потеря данных
-B:\study\labs7\OpenCL\lab3\lab1\lab1.cpp(157,26): warning C4267: =: преобразование из "size_t" в "cl_int"; возможна потеря данных
-B:\study\labs7\OpenCL\lab3\lab1\lab1.cpp(158,24): warning C4267: =: преобразование из "size_t" в "cl_int"; возможна потеря данных
-B:\study\labs7\OpenCL\lab3\lab1\lab1.cpp(159,26): warning C4267: =: преобразование из "size_t" в "cl_int"; возможна потеря данных
+B:\study\labs7\OpenCL\lab3\lab1\lab1.cpp(162,25): warning C4267: =: преобразование из "size_t" в "cl_int"; возможна потеря данных
+B:\study\labs7\OpenCL\lab3\lab1\lab1.cpp(163,26): warning C4267: =: преобразование из "size_t" в "cl_int"; возможна потеря данных
+B:\study\labs7\OpenCL\lab3\lab1\lab1.cpp(164,24): warning C4267: =: преобразование из "size_t" в "cl_int"; возможна потеря данных
+B:\study\labs7\OpenCL\lab3\lab1\lab1.cpp(165,26): warning C4267: =: преобразование из "size_t" в "cl_int"; возможна потеря данных
   lab1.vcxproj -> B:\study\labs7\OpenCL\lab3\x64\Debug\lab1.exe
