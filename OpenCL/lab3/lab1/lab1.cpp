@@ -164,7 +164,7 @@ void arr(const char* filename, const cl_context& context, cl_device_id* devices,
 	cl_int4* output = (cl_int4*)malloc(size);
 
 	cl_mem inputBuffer = clCreateBuffer(context, CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR, (size) * sizeof(cl_int4), (void*)input, NULL);
-	cl_mem phaseBuffer = clCreateBuffer(context, CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR, sizeof(int), (void*)&phase, NULL);
+	cl_mem phaseBuffer = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, sizeof(int), (void*)&phase, NULL);
 
 	cl_kernel kernel = clCreateKernel(program, "mul", NULL);
 
@@ -175,6 +175,8 @@ void arr(const char* filename, const cl_context& context, cl_device_id* devices,
 	size_t global_work_size[1] = { size };
 
 	status = clEnqueueNDRangeKernel(commandQueue, kernel, 1, NULL, global_work_size, NULL, 0, NULL, NULL);
+	phase = 1;
+	status = clSetKernelArg(kernel, 1, sizeof(cl_mem), (void*)&phaseBuffer);
 	status = clEnqueueNDRangeKernel(commandQueue, kernel, 1, NULL, global_work_size, NULL, 0, NULL, NULL);
 
 	status = clEnqueueReadBuffer(commandQueue, inputBuffer, CL_TRUE, 0, size * sizeof(cl_int4), output, 0, NULL, NULL);
