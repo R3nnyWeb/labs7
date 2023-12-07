@@ -1,7 +1,7 @@
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Arrays;
-import java.util.function.Consumer;
+import java.util.Scanner;
 
 public class Main {
     public static void swap(int[] array, int i, int j) {
@@ -70,41 +70,52 @@ public class Main {
 
     }
 
-    public static double measureTimeMillis(Consumer<int[]> method, int[] array) {
+    private static void printSortTimes(int[] arr, int n, int count) {
         Instant start = Instant.now();
-        method.accept(Arrays.copyOf(array, array.length));
+        for (int i = 0; i < count; i++) {
+            selectSort(Arrays.copyOf(arr, n));
+        }
         Instant end = Instant.now();
         Duration res = Duration.between(start, end);
-        return (double) res.toNanos() / 1000000.0;
-    }
+        System.out.print(res.toNanos() / 10e6 / count + "\t");
+        System.gc();
 
-    private static void printSortTimes(int[] arr, int n) {
-        double sum = 0;
-        for (int i = 0; i < 100; i++) {
-            sum += measureTimeMillis(Main::selectSort, Arrays.copyOf(arr, n));
+        start = Instant.now();
+        for (int i = 0; i < count; i++) {
+            insertionSort(Arrays.copyOf(arr, n));
         }
-        System.out.print(sum / 100 + "\t");
+        end = Instant.now();
+        res = Duration.between(start, end);
+        System.out.print(res.toNanos() / 10e6 / count + "\t");
         System.gc();
-        sum = 0;
-        for (int i = 0; i < 100; i++) {
-            sum += measureTimeMillis(Main::insertionSort, Arrays.copyOf(arr, n));
+
+        start = Instant.now();
+        for (int i = 0; i < count; i++) {
+            mergeSort(Arrays.copyOf(arr, n));
         }
-        System.out.print(sum / 100 + "\t");
-        System.gc();
-        sum = 0;
-        for (int i = 0; i < 100; i++) {
-            sum += measureTimeMillis(Main::mergeSort, Arrays.copyOf(arr, n));
-        }
-        System.out.print(sum / 100 + "\t");
+        end = Instant.now();
+        res = Duration.between(start, end);
+        System.out.print(res.toNanos() / 10e6 / count + "\t");
         System.gc();
         System.out.println();
     }
 
     public static void main(String[] args) {
-        int[] arr = ArrayCreator.createArray(35000, -100000, 100000);
-        for (int i = 5000; i <= 35000; i += 1000) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Введите минимальный размер массива: ");
+        int minSize = sc.nextInt();
+        System.out.println("Введите максимальный размер массива: ");
+        int maxSize = sc.nextInt();
+        System.out.println("Введите шаг изменения размера массива: ");
+        int step = sc.nextInt();
+        System.out.println("Введите количеств измерений для сортировки: ");
+        int count = sc.nextInt();
+
+        int[] arr = ArrayCreator.createArray(maxSize, -100000, 100000);
+        for (int i = minSize; i <= maxSize; i += step) {
             System.out.println("Размер = " + i);
-            printSortTimes(arr, i);
+            printSortTimes(arr, i, count);
         }
 
     }
