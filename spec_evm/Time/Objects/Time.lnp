@@ -1,7 +1,7 @@
 --cpu Cortex-M3
-".\objects\2.o"
 ".\objects\lcdstring.o"
 ".\objects\mlt_lcd.o"
+".\objects\5.o"
 ".\objects\startup_mdr32f9qx.o"
 ".\objects\system_mdr32f9qx.o"
 ".\objects\mdr32f9qx_bkp.o"

@@ -2,8 +2,8 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.Scanner;
-
 public class Main {
+
     public static void swap(int[] array, int i, int j) {
         int temp = array[i];
         array[i] = array[j];
@@ -11,7 +11,7 @@ public class Main {
     }
 
 
-    public static void selectSort(int[] array) {
+    public static int[] selectSort(int[] array) {
         int min;
         for (int i = 0; i < array.length - 1; i++) {
             min = i;
@@ -21,9 +21,10 @@ public class Main {
             }
             swap(array, i, min);
         }
+        return array;
     }
 
-    public static void insertionSort(int[] array) {
+    public static int[] insertionSort(int[] array) {
         for (int i = 1; i < array.length; i++) {
             if (array[i - 1] > array[i]) {
                 int key = array[i];
@@ -35,13 +36,14 @@ public class Main {
                 array[j + 1] = key;
             }
         }
+        return array;
     }
 
-    public static void mergeSort(int[] array) {
-        mergeSortRecursive(array);
+    public static int[] mergeSort(int[] array) {
+         return mergeSortRecursive(array);
     }
 
-    public static void mergeSortRecursive(int[] array) {
+    public static int[] mergeSortRecursive(int[] array) {
         if (array.length > 1) {
             int mid = array.length / 2;
             int[] left = Arrays.copyOfRange(array, 0, mid);
@@ -50,6 +52,7 @@ public class Main {
             mergeSortRecursive(right);
             merge(left, right, array);
         }
+        return array;
     }
 
     private static void merge(int[] left, int[] right, int[] array) {
@@ -73,7 +76,7 @@ public class Main {
     private static void printSortTimes(int[] arr, int n, int count) {
         Instant start = Instant.now();
         for (int i = 0; i < count; i++) {
-            selectSort(Arrays.copyOf(arr, n));
+           selectSort(Arrays.copyOf(arr, n));
         }
         Instant end = Instant.now();
         Duration res = Duration.between(start, end);
@@ -103,6 +106,25 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
+        System.out.println("Введите размер исходного массива: ");
+        int size = sc.nextInt();
+        System.out.println("Введите массив: ");
+        int[] array = new int[size];
+        for (int i = 0; i < size; i++) {
+            array[i] = sc.nextInt();
+        }
+        System.out.println("Исходный массив:");
+        for (int i = 0; i < size; i++) {
+            System.out.print(array[i] + " ");
+        }
+        System.out.println();
+        System.out.println("Отсортированный массив: ");
+        mergeSort(array);
+        for (int i = 0; i < size; i++) {
+            System.out.print(array[i] + " ");
+        }
+        System.out.println("Анализ:");
+
         System.out.println("Введите минимальный размер массива: ");
         int minSize = sc.nextInt();
         System.out.println("Введите максимальный размер массива: ");
@@ -117,7 +139,6 @@ public class Main {
             System.out.println("Размер = " + i);
             printSortTimes(arr, i, count);
         }
-
+        sc.close();
     }
-
 }
