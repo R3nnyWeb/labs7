@@ -383,11 +383,6 @@
           <GroupName>Source Group 1</GroupName>
           <Files>
             <File>
-              <FileName>2.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\2.c</FilePath>
-            </File>
-            <File>
               <FileName>lcdstring.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\LIBS\lcdstring.c</FilePath>
@@ -398,9 +393,9 @@
               <FilePath>.\LIBS\mlt_lcd.c</FilePath>
             </File>
             <File>
-              <FileName>3.c</FileName>
+              <FileName>5.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\3.c</FilePath>
+              <FilePath>.\5.c</FilePath>
             </File>
           </Files>
         </Group>

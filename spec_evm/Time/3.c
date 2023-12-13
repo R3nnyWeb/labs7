@@ -104,10 +104,6 @@ void TimeConfig(void){
 	BKP_RTC_WaitForUpdate();
 	BKP_RTC_Enable(ENABLE);
 	
-	uint32_t minute = 60 * 10e6;
-	BKP_RTC_SetAlarm(BKP_RTC_GetCounter() + minute);
-	
-	BKP_RTC_ITConfig(BKP_RTC_IT_ALRF, ENABLE);
 }
 
 void CPU_Config(){
@@ -132,6 +128,7 @@ void changeLedStatus(uint8_t led){
 
 void IntConfig(){
 	NVIC_EnableIRQ(SysTick_IRQn);
+	NVIC_EnableIRQ(BACKUP_IRQn);
 	SysTick_Config(8000000);
 	__enable_irq();
 }
@@ -144,13 +141,15 @@ void  SysTick_Handler(void){
 	time  = BKP_RTC_GetCounter();
 	tmstrct = localtime(&time);
 	//output string
-	strftime(stroka,16,"%H,%M,%S",tmstrct);
-	PrintString(stroka,7);
+	strftime(stroka,16,"    %H,%M",tmstrct);
+	PrintString(stroka,6);
+	char stroka2[16];strftime(stroka2,16,"   %d,%m,%y",tmstrct);
+	PrintString(stroka2,7);
 }
 
 void BACKUP_IRQHandler(void){
 		char intr[9];
-		sprintf(model, "%s", "Interrupt");
+		sprintf(intr, "%s", "Interrupt");
 		PrintString(intr, 1);
 }
 
@@ -168,8 +167,14 @@ int main(){
 	TimeConfig();
 	IntConfig();
 	
+	
+	BKP_RTC_ITConfig(BKP_RTC_IT_ALRF, ENABLE);
+	BKP_RTC_SetAlarm(BKP_RTC_GetCounter() + 10);
+	
+	
+	
 	uint8_t *brigada[9] = {{cyr_B},{cyr_r} ,{cyr_i},{cyr_g}, {cyr_a},{cyr_d},{cyr_a},{sym_sp}, {dig_4}};
-	LcdScrollString (brigada, 0, 9, 8);
+	LcdScrollString (brigada, 0, 8, 8);
 
 	uint32_t count = 0;
 	while(1){
