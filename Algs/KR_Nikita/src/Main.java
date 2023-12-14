@@ -86,7 +86,7 @@ public class Main {
         }
         Instant end = Instant.now();
         Duration res = Duration.between(start, end);
-        System.out.print(res.toNanos() / 10e6 / count + "\t");
+        System.out.print(res.toNanos() / 10e3 / count + "\t");
         System.gc();
 
         start = Instant.now();
@@ -95,7 +95,7 @@ public class Main {
         }
         end = Instant.now();
         res = Duration.between(start, end);
-        System.out.print(res.toNanos() / 10e6 / count + "\t");
+        System.out.print(res.toNanos() / 10e3 / count + "\t");
         System.gc();
 
         start = Instant.now();
@@ -104,7 +104,7 @@ public class Main {
         }
         end = Instant.now();
         res = Duration.between(start, end);
-        System.out.print(res.toNanos() / 10e6 / count + "\t");
+        System.out.print(res.toNanos() / 10e3 / count + "\t");
         System.gc();
         System.out.println();
     }
@@ -121,40 +121,44 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Введите размер исходного массива: ");
-        int size = sc.nextInt();
-        System.out.println("Введите массив: ");
-        int[] array = new int[size];
-        for (int i = 0; i < size; i++) {
-            array[i] = sc.nextInt();
-        }
-        System.out.println("Исходный массив:");
-        for (int i = 0; i < size; i++) {
-            System.out.print(array[i] + " ");
-        }
-        System.out.println();
-        System.out.println("Отсортированный массив: ");
-        mergeSort(array);
-        for (int i = 0; i < size; i++) {
-            System.out.print(array[i] + " ");
-        }
-        System.out.println();
-        System.out.println("Анализ:");
+        if(sc.nextInt() == 1){
+            System.out.println("Введите размер исходного массива: ");
+            int size = sc.nextInt();
+            System.out.println("Введите массив: ");
+            int[] array = new int[size];
+            for (int i = 0; i < size; i++) {
+                array[i] = sc.nextInt();
+            }
+            System.out.println("Исходный массив:");
+            for (int i = 0; i < size; i++) {
+                System.out.print(array[i] + " ");
+            }
+            System.out.println();
+            System.out.println("Отсортированный массив: ");
+            mergeSort(array);
+            for (int i = 0; i < size; i++) {
+                System.out.print(array[i] + " ");
+            }
+            System.out.println();
+        } else {
+            System.out.println("Анализ:");
 
-        System.out.println("Введите минимальный размер массива: ");
-        int minSize = sc.nextInt();
-        System.out.println("Введите максимальный размер массива: ");
-        int maxSize = sc.nextInt();
-        System.out.println("Введите шаг изменения размера массива: ");
-        int step = sc.nextInt();
-        System.out.println("Введите количеств измерений для сортировки: ");
-        int count = sc.nextInt();
+            System.out.println("Введите минимальный размер массива: ");
+            int minSize = sc.nextInt();
+            System.out.println("Введите максимальный размер массива: ");
+            int maxSize = sc.nextInt();
+            System.out.println("Введите шаг изменения размера массива: ");
+            int step = sc.nextInt();
+            System.out.println("Введите количеств измерений для сортировки: ");
+            int count = sc.nextInt();
 
-        int[] arr = createArray(maxSize, -100000, 100000);
-        for (int i = minSize; i <= maxSize; i += step) {
-            System.out.println("Размер = " + i);
-            printSortTimes(arr, i, count);
+            int[] arr = createArray(maxSize, -100000, 100000);
+            for (int i = minSize; i <= maxSize; i += step) {
+                System.out.println("Размер = " + i);
+                printSortTimes(arr, i, count);
+            }
+            sc.close();
         }
-        sc.close();
+
     }
 }
