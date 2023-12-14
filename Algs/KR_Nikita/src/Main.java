@@ -1,7 +1,9 @@
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
+
 public class Main {
 
     public static void swap(int[] array, int i, int j) {
@@ -39,20 +41,24 @@ public class Main {
         return array;
     }
 
-    public static int[] mergeSort(int[] array) {
-         return mergeSortRecursive(array);
-    }
 
-    public static int[] mergeSortRecursive(int[] array) {
+    public static void mergeSort(int[] array) {
         if (array.length > 1) {
             int mid = array.length / 2;
-            int[] left = Arrays.copyOfRange(array, 0, mid);
-            int[] right = Arrays.copyOfRange(array, mid + 1, array.length);
-            mergeSortRecursive(left);
-            mergeSortRecursive(right);
+            int[] left = copy(array, 0, mid);
+            int[] right = copy(array, mid, array.length);
+            mergeSort(left);
+            mergeSort(right);
             merge(left, right, array);
         }
-        return array;
+    }
+
+    public static int[] copy(int[] array, int from, int to) {
+        int[] copy = new int[to - from];
+        for (int i = from; i < to; i++) {
+            copy[i - from] = array[i];
+        }
+        return copy;
     }
 
     private static void merge(int[] left, int[] right, int[] array) {
@@ -76,7 +82,7 @@ public class Main {
     private static void printSortTimes(int[] arr, int n, int count) {
         Instant start = Instant.now();
         for (int i = 0; i < count; i++) {
-           selectSort(Arrays.copyOf(arr, n));
+            selectSort(Arrays.copyOf(arr, n));
         }
         Instant end = Instant.now();
         Duration res = Duration.between(start, end);
@@ -103,6 +109,15 @@ public class Main {
         System.out.println();
     }
 
+    public static int[] createArray(int size, int min, int max) {
+        int[] array = new int[size];
+        Random rand = new Random();
+        for (int i = 0; i < size; i++) {
+            array[i] = rand.nextInt(min, max + 1);
+        }
+        return array;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -123,6 +138,7 @@ public class Main {
         for (int i = 0; i < size; i++) {
             System.out.print(array[i] + " ");
         }
+        System.out.println();
         System.out.println("Анализ:");
 
         System.out.println("Введите минимальный размер массива: ");
@@ -134,7 +150,7 @@ public class Main {
         System.out.println("Введите количеств измерений для сортировки: ");
         int count = sc.nextInt();
 
-        int[] arr = ArrayCreator.createArray(maxSize, -100000, 100000);
+        int[] arr = createArray(maxSize, -100000, 100000);
         for (int i = minSize; i <= maxSize; i += step) {
             System.out.println("Размер = " + i);
             printSortTimes(arr, i, count);

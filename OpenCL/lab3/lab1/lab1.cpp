@@ -79,14 +79,15 @@ void Init() {
 	cl_context context = clCreateContext(NULL, 1, devices, NULL, NULL, NULL);
 	cl_command_queue commandQueue = clCreateCommandQueue(context, devices[0], 0, NULL);
 
-	cout << endl << "Run programs" << endl << endl;
+	cout << endl << "Run programs" << endl;
 	const char* filename = "HelloWorld_Kernel.cl";
-	HelloWOrld(filename, context, devices, commandQueue);
 	const char* filename2 = "arr2.cl";
 	const char* filename3 = "arr3.cl";
-	cout << "Second Ex" << endl;
+	cout << endl << "First program" << endl;
+	HelloWOrld(filename, context, devices, commandQueue);
+	cout << endl << "Second program" << endl;
 	arr1(filename2, context, devices, commandQueue);
-	cout << "Third Ex" << endl;
+	cout << endl << "Third program" << endl;
 	arr2(filename3, context, devices, commandQueue);
 
 	status = clReleaseCommandQueue(commandQueue);
@@ -163,7 +164,9 @@ void arr1(const char* filename, const cl_context& context, cl_device_id* devices
 		input[i-1].s[1] = i+i/2;
 		input[i-1].s[2] = i*2;
 		input[i-1].s[3] = i/2*5;
-		cout << "(" << input[i - 1].s[0] <<", "<< input[i - 1].s[1] << ", " << input[i - 1].s[2] << ", " << input[i - 1].s[3] << ") ";
+	}
+	for (size_t i = 0; i < 10; i++) {
+		cout << "(" << input[i].s[0] << ", " << input[i].s[1] << ", " << input[i].s[2] << ", " << input[i].s[3] << ") ";
 	}
 	cout << endl;
 	cl_int4* output = (cl_int4*)malloc(size);
@@ -186,7 +189,7 @@ void arr1(const char* filename, const cl_context& context, cl_device_id* devices
 
 	status = clEnqueueReadBuffer(commandQueue, inputBuffer, CL_TRUE, 0, size * sizeof(cl_int4), output, 0, NULL, NULL);
 	cout << "Output data: " << endl;
-	for (size_t i = 0; i < size; i++)
+	for (size_t i = 0; i < 10; i++)
 	{
 		cout << "(" << output[i].s[0] << ", " << output[i].s[1] << ", " << output[i].s[2] << ", " << output[i].s[3] << ") ";
 	}
@@ -209,14 +212,11 @@ void arr2(const char* filename, const cl_context& context, cl_device_id* devices
 	cl_program program = clCreateProgramWithSource(context, 1, &source, sourceSize, NULL);
 	status = clBuildProgram(program, 1, devices, NULL, NULL, NULL);
 
-	const size_t size = 10;
-	cout << "Input data: " << endl;
+	const size_t size = 100;
 	int input[size];
 	for (size_t i = 0; i < size; i++) {
 		input[i] = 1;
-		cout << input[i] << "  ";
 	}
-	cout << endl;
 	int* output = (int*)malloc(size);
 
 	cl_mem inputBuffer = clCreateBuffer(context, CL_MEM_READ_WRITE | CL_MEM_COPY_HOST_PTR, (size) * sizeof(int), (void*)input, NULL);
