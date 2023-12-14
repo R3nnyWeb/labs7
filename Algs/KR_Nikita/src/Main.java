@@ -1,6 +1,5 @@
 import java.time.Duration;
 import java.time.Instant;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -82,7 +81,7 @@ public class Main {
     private static void printSortTimes(int[] arr, int n, int count) {
         Instant start = Instant.now();
         for (int i = 0; i < count; i++) {
-            selectSort(Arrays.copyOf(arr, n));
+            selectSort(copy(arr, 0, n));
         }
         Instant end = Instant.now();
         Duration res = Duration.between(start, end);
@@ -91,7 +90,7 @@ public class Main {
 
         start = Instant.now();
         for (int i = 0; i < count; i++) {
-            insertionSort(Arrays.copyOf(arr, n));
+            insertionSort(copy(arr, 0, n));
         }
         end = Instant.now();
         res = Duration.between(start, end);
@@ -100,7 +99,7 @@ public class Main {
 
         start = Instant.now();
         for (int i = 0; i < count; i++) {
-            mergeSort(Arrays.copyOf(arr, n));
+            mergeSort(copy(arr, 0, n));
         }
         end = Instant.now();
         res = Duration.between(start, end);
@@ -120,8 +119,8 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
-        if(sc.nextInt() == 1){
+        System.out.println("Введите 1 для ввода массива для сортировки или любое число для анализа: ");
+        if (sc.nextInt() == 1) {
             System.out.println("Введите размер исходного массива: ");
             int size = sc.nextInt();
             System.out.println("Введите массив: ");
