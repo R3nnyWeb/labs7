@@ -1,4 +1,4 @@
-import kotlin.math.pow
+import kotlin.math.pow}
 
 fun main(args: Array<String>) {
     print("lambda = ")
